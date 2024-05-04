@@ -1,8 +1,9 @@
 if [ -d ~/.config/nvim ]; then
     echo 'removing ~/.config/nvim'
     sudo rm -rf ~/.config/nvim
-    sudo mkdir ~/.config/nvim
 fi
+
+sudo mkdir ~/.config/nvim
 
 if [ -f ~/.bashrc ]; then
     echo 'removing ~/.bashrc'
