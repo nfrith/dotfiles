@@ -4,7 +4,6 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.front_end = 'OpenGL'
 config.color_scheme = 'Batman'
 config.font = wezterm.font("JetBrainsMono NF")
 config.font_size = 12
