@@ -1,0 +1,17 @@
+# Get editor completions based on the config schema
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[git_status]
+staged = '+'
+conflicted = '='
+up_to_date = ''
+deleted = '✘'
+modified = '!'
+
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
+
+[container]
+format = '[$symbol \[$name\]]($style) '
