@@ -35,6 +35,13 @@ map('n', '<leader>ch', '<cmd>NvCheatsheet<CR>', { desc = 'toggle nvcheatsheet' }
 -- end, { desc = 'format files' })
 
 -----------------------------------------------------------------
+---------------------------- ocs52 ------------------------------
+-----------------------------------------------------------------
+map('n', '<leader>c', require('osc52').copy_operator, { desc = 'copy the given text to clipboard', expr = true })
+map('n', '<leader>cc', '<leader>c_', { desc = 'copy current line', remap = true})
+map('v', '<leader>c', require('osc52').copy_visual, { desc = 'copy the current selection'})
+
+-----------------------------------------------------------------
 ------------------ Diagnostic keymaps ---------------------------
 -----------------------------------------------------------------
 map('n', '<leader>dj', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
