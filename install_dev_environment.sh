@@ -24,5 +24,5 @@ else
     echo 'Skipping PATH modification for neovim in ~/.zshrc as it already exists on system...'
 fi
 
-sudo chmod +x ./setup_dev_stow.sh
-./setup_dev_stow.sh
+# sudo chmod +x ./setup_dev_stow.sh
+# ./setup_dev_stow.sh
