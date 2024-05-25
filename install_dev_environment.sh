@@ -2,6 +2,7 @@
 sudo apt-get update
 sudo apt-get install ripgrep
 sudo apt-get install fd-find
+sudo apt-get install stow
 
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim

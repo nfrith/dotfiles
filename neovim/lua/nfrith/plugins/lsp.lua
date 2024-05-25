@@ -10,6 +10,7 @@ return {
         'stylua',
         'csharp-language-server',
         'typescript-language-server',
+        'gopls',
       },
     },
     -- opts = function()
@@ -160,6 +161,18 @@ return {
       local servers = {
         tsserver = {},
         csharp_ls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+            },
+          },
+          on_attach = {},
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},

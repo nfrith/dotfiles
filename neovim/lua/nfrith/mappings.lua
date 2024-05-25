@@ -106,7 +106,13 @@ map('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffer
 
 -- Shortcut for searching your Neovim configuration files
 map('n', '<leader>sn', function()
-  builtin.find_files { cwd = vim.fn.stdpath 'config' }
+  local search_dirs = {
+    vim.fn.stdpath 'config',
+    vim.fn.expand '~/dotfiles/neovim',
+  }
+
+  -- builtin.find_files { cwd = vim.fn.stdpath 'config' }
+  builtin.find_files { search_dirs = search_dirs }
 end, { desc = '[S]earch [N]eovim files' })
 
 -- Slightly advanced example of overriding default behavior and theme
@@ -127,24 +133,23 @@ vim.keymap.set('n', '<leader>s/', function()
   }
 end, { desc = '[S]earch [/] in Open Files' })
 
-
 -----------------------------------------------------------------
 ---------------------------- copilot ----------------------------
 -----------------------------------------------------------------
 map('n', '<leader>ah', function()
-  local actions = require('CopilotChat.actions')
+  local actions = require 'CopilotChat.actions'
   require('CopilotChat.integrations.telescope').pick(actions.help_actions())
 end, { desc = 'CopilotChat - Help actions' })
 
 map('n', '<leader>ap', function()
-  local actions = require('CopilotChat.actions')
+  local actions = require 'CopilotChat.actions'
   require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
 end, { desc = 'CopilotChat - prompt actions' })
 
-map('x', '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat - Explain Code'})
+map('x', '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat - Explain Code' })
 
 map('n', '<leader>ai', function()
-  local input = vim.fn.input('Ask Copilot: ')
+  local input = vim.fn.input 'Ask Copilot: '
   if input ~= '' then
     vim.cmd('CopilotChat ' .. input)
   end
