@@ -171,7 +171,6 @@ return {
               gofumpt = true,
             },
           },
-          on_attach = {},
         },
         lua_ls = {
           -- cmd = {...},

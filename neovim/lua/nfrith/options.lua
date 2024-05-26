@@ -30,19 +30,33 @@ o.showmode = false -- Don't show the mode, since it's already in the status line
 --   },
 -- }
 
--- vim.opt.clipboard = 'unnamed'
-vim.g.clipboard = {
-    name = "kittyClipboard",
-    copy = {
-        ["*"] = {"kitten clipboard"},
-        ["+"] = {"kitten clipboard"},
-    },
-    paste = {
-        ["*"] = { "kitty","+kitten", "clipboard", "--get-clipboard" },
-        ["+"] = { "kitty","+kitten", "clipboard", "--get-clipboard" },
-    },
-    cache_enabled = 1,
+local function copy(lines, _)
+  require('osc52').copy(table.concat(lines, '\n'))
+end
+
+local function paste()
+  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+end
+
+g.clipboard = {
+  name = 'osc52',
+  copy = {['+'] = copy, ['*'] = copy},
+  paste = {['+'] = paste, ['*'] = paste},
 }
+
+-- vim.opt.clipboard = 'unnamed'
+-- vim.g.clipboard = {
+--     name = "kittyClipboard",
+--     copy = {
+--         ["*"] = {"kitten clipboard"},
+--         ["+"] = {"kitten clipboard"},
+--     },
+--     paste = {
+--         ["*"] = { "kitty","+kitten", "clipboard", "--get-clipboard" },
+--         ["+"] = { "kitty","+kitten", "clipboard", "--get-clipboard" },
+--     },
+--     cache_enabled = 1,
+-- }
 
 o.cursorline = true
 o.cursorlineopt = "number"

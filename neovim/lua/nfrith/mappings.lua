@@ -38,8 +38,8 @@ map('n', '<leader>ch', '<cmd>NvCheatsheet<CR>', { desc = 'toggle nvcheatsheet' }
 ---------------------------- ocs52 ------------------------------
 -----------------------------------------------------------------
 map('n', '<leader>c', require('osc52').copy_operator, { desc = 'copy the given text to clipboard', expr = true })
-map('n', '<leader>cc', '<leader>c_', { desc = 'copy current line', remap = true})
-map('v', '<leader>c', require('osc52').copy_visual, { desc = 'copy the current selection'})
+map('n', '<leader>cc', '<leader>c_', { desc = 'copy current line', remap = true })
+map('v', '<leader>c', require('osc52').copy_visual, { desc = 'copy the current selection' })
 
 -----------------------------------------------------------------
 ------------------ Diagnostic keymaps ---------------------------
@@ -143,24 +143,24 @@ end, { desc = '[S]earch [/] in Open Files' })
 -----------------------------------------------------------------
 ---------------------------- copilot ----------------------------
 -----------------------------------------------------------------
-map('n', '<leader>ah', function()
-  local actions = require 'CopilotChat.actions'
-  require('CopilotChat.integrations.telescope').pick(actions.help_actions())
-end, { desc = 'CopilotChat - Help actions' })
-
-map('n', '<leader>ap', function()
-  local actions = require 'CopilotChat.actions'
-  require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
-end, { desc = 'CopilotChat - prompt actions' })
-
-map('x', '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat - Explain Code' })
-
-map('n', '<leader>ai', function()
-  local input = vim.fn.input 'Ask Copilot: '
-  if input ~= '' then
-    vim.cmd('CopilotChat ' .. input)
-  end
-end, { desc = 'CopilotChat - Ask input' })
+-- map('n', '<leader>ah', function()
+--   local actions = require 'CopilotChat.actions'
+--   require('CopilotChat.integrations.telescope').pick(actions.help_actions())
+-- end, { desc = 'CopilotChat - Help actions' })
+--
+-- map('n', '<leader>ap', function()
+--   local actions = require 'CopilotChat.actions'
+--   require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+-- end, { desc = 'CopilotChat - prompt actions' })
+--
+-- map('x', '<leader>ae', '<cmd>CopilotChatExplain<cr>', { desc = 'CopilotChat - Explain Code' })
+--
+-- map('n', '<leader>ai', function()
+--   local input = vim.fn.input 'Ask Copilot: '
+--   if input ~= '' then
+--     vim.cmd('CopilotChat ' .. input)
+--   end
+-- end, { desc = 'CopilotChat - Ask input' })
 
 -----------------------------------------------------------------
 -------------------------- terminal  ----------------------------
