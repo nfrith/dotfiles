@@ -3,7 +3,7 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- globals -----------------------------------------
-g.toggle_theme_icon = "   "
+g.toggle_theme_icon = '   '
 g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 
 -------------------------------------- options ------------------------------------------
@@ -35,13 +35,13 @@ local function copy(lines, _)
 end
 
 local function paste()
-  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+  return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
 end
 
 g.clipboard = {
   name = 'osc52',
-  copy = {['+'] = copy, ['*'] = copy},
-  paste = {['+'] = paste, ['*'] = paste},
+  copy = { ['+'] = copy, ['*'] = copy },
+  paste = { ['+'] = paste, ['*'] = paste },
 }
 
 -- vim.opt.clipboard = 'unnamed'
@@ -59,7 +59,7 @@ g.clipboard = {
 -- }
 
 o.cursorline = true
-o.cursorlineopt = "number"
+o.cursorlineopt = 'number'
 
 -- Indenting
 o.expandtab = true
@@ -69,10 +69,10 @@ o.tabstop = 2
 o.softtabstop = 2
 opt.breakindent = true
 
-opt.fillchars = { eob = " " }
+opt.fillchars = { eob = ' ' }
 o.ignorecase = true
 o.smartcase = true
-o.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example!
+o.mouse = 'a' -- Enable mouse mode, can be useful for resizing splits for example!
 
 -- Numbers
 o.number = true
@@ -97,17 +97,18 @@ opt.list = true
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.inccommand = 'split' -- Preview substitutions live, as you type!
 opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
-opt.hlsearch = true -- Set highlight on search
-opt.whichwrap:append "<>[]hl" -- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
+opt.hlsearch = true -- Set highlight on searchoptions
+opt.whichwrap:append '<>[]hl' -- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
 opt.swapfile = false
+opt.termguicolors = true
 
 -- g.mapleader = " "
 
 -- disable some default providers
 -- g["loaded_node_provider"] = 0
-g["loaded_python3_provider"] = 0
-g["loaded_perl_provider"] = 0
-g["loaded_ruby_provider"] = 0
+g['loaded_python3_provider'] = 0
+g['loaded_perl_provider'] = 0
+g['loaded_ruby_provider'] = 0
 
 -- add binaries installed by mason.nvim to path
 -- local is_windows = vim.fn.has("win32") ~= 0
