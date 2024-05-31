@@ -24,7 +24,10 @@ else
 fi
 
 # get typescript server for lsp
-npm install -g typescript-language-server typescript
+npm install -g typescript-language-server
+npm install -g neovim
+npm install -g vscode-langservers-extracted
+cargo install htmx-lsp
 
 # Download and install Neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz

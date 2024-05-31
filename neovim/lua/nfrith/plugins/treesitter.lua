@@ -22,6 +22,7 @@ return {
         'vimdoc',
         'typescript',
         'c_sharp',
+        'astro',
         'go',
       },
       -- Autoinstall languages that are not installed
