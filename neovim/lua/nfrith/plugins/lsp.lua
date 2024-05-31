@@ -14,6 +14,7 @@ return {
         'html-lsp',
         'htmx-lsp',
         'gopls',
+        'tailwindcss-language-server',
       },
     },
     -- opts = function()
@@ -162,10 +163,15 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        tailwindcss = {},
         astro = {},
-        htmx = {},
+        htmx = {
+          filetypes = { 'html', 'templ', 'astro' },
+        },
         html = {},
-        tsserver = {},
+        tsserver = {
+          filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'astro' }
+        },
         csharp_ls = {},
         gopls = {
           settings = {

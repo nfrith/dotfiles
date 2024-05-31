@@ -27,6 +27,7 @@ fi
 npm install -g typescript-language-server
 npm install -g neovim
 npm install -g vscode-langservers-extracted
+npm install -g @tailwindcss/language-server
 cargo install htmx-lsp
 
 # Download and install Neovim
