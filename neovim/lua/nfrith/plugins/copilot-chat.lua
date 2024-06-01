@@ -54,7 +54,7 @@ return {
         chat_user_prefix = 'GOAL:',
         template_selection = 'CONTEXT: \n\n{{selection}}\n\n{{command}}',
         hooks = {
-          AllBuffersChatNew = function(gp, _)
+          AllBuffersChatNew = function(gp, params)
             vim.api.nvim_command('%' .. gp.config.cmd_prefix .. 'ChatNew')
 
             local all_text = ''
@@ -98,10 +98,18 @@ return {
       -- Chat commands
       vim.keymap.set({ 'n' }, '<leader>an', '<cmd>GpChatNew<cr>', keymapOptions 'New Chat')
       vim.keymap.set({ 'n' }, '<leader>ap', '<cmd>GpUseCurrentBufferChatNew<cr>', keymapOptions 'Paste into new Chat')
-      vim.keymap.set({ 'n' }, '<leader>ac', '<cmd>GpChatToggle<cr>', keymapOptions 'Toggle Chat')
+      vim.keymap.set({ 'n' }, '<leader>ac', '<cmd>GpChatToggle split<cr>', keymapOptions 'Toggle Chat')
       vim.keymap.set({ 'n' }, '<leader>af', '<cmd>GpChatFinder<cr>', keymapOptions 'Chat Finder')
       vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<C-g>s', '<cmd>GpStop<cr>', keymapOptions 'Stop')
       vim.keymap.set({ 'n', 'i', 'v', 'x' }, '<C-g>n', '<cmd>GpNextAgent<cr>', keymapOptions 'Next Agent')
+
+      -- copied from github
+      vim.keymap.set('v', '<leader>ar', ":<C-u>'<,'>GpRewrite<cr>", keymapOptions 'Visual Rewrite')
+      vim.keymap.set('v', '<leader>aa', ":<C-u>'<,'>GpAppend<cr>", keymapOptions 'Visual Append (after)')
+      vim.keymap.set('v', '<leader>ap', ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions 'Paste into latest chat')
+      vim.keymap.set('v', '<leader>ab', ":<C-u>'<,'>GpPrepend<cr>", keymapOptions 'Visual Prepend (before)')
+      vim.keymap.set('v', '<leader>ai', ":<C-u>'<,'>GpImplement<cr>", keymapOptions 'Implement selection')
+      vim.keymap.set({ 'n', 'i' }, '<leader>ap', '<cmd>GpPopup<cr>', keymapOptions 'Popup')
     end,
   },
 

@@ -170,7 +170,7 @@ return {
         },
         html = {},
         tsserver = {
-          filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'astro' }
+          filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
         },
         csharp_ls = {},
         gopls = {
