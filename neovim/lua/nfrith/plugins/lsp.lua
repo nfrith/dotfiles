@@ -15,7 +15,7 @@ return {
         'htmx-lsp',
         'gopls',
         'tailwindcss-language-server',
-        'css-lsp',
+        -- 'css-lsp',
       },
     },
     -- opts = function()
