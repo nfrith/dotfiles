@@ -109,7 +109,7 @@ return {
       vim.keymap.set('v', '<leader>ap', ":<C-u>'<,'>GpChatPaste<cr>", keymapOptions 'Paste into latest chat')
       vim.keymap.set('v', '<leader>ab', ":<C-u>'<,'>GpPrepend<cr>", keymapOptions 'Visual Prepend (before)')
       vim.keymap.set('v', '<leader>ai', ":<C-u>'<,'>GpImplement<cr>", keymapOptions 'Implement selection')
-      vim.keymap.set({ 'n', 'i' }, '<leader>ap', '<cmd>GpPopup<cr>', keymapOptions 'Popup')
+      -- vim.keymap.set({ 'n', 'i' }, '<leader>ap', '<cmd>GpPopup<cr>', keymapOptions 'Popup')
     end,
   },
 

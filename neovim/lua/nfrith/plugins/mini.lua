@@ -3,6 +3,7 @@ return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
+      require('mini.files').setup()
       -- Better Around/Inside textobjects
       --
       -- Examples:
@@ -36,6 +37,5 @@ return {
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
-  }
-
+  },
 }

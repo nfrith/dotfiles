@@ -83,7 +83,17 @@ map('n', '<C-/>', "<cmd>lua require('Comment.api').toggle.linewise()<CR>", { des
 ------------------------ nvimtree -------------------------------
 -----------------------------------------------------------------
 map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' })
-map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree toggle window' })
+map('n', '<leader>ee', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree toggle window' })
+
+-----------------------------------------------------------------
+------------------------ mini files -----------------------------
+-----------------------------------------------------------------
+map('n', '<leader>ej', function()
+  require('mini.files').open(vim.uv.cwd(), true)
+end, { desc = 'Open mini.files in CWD' })
+map('n', '<leader>ek', function()
+  require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+end, { desc = 'Open mini.files in dir of current file' })
 
 -----------------------------------------------------------------
 --------------------------- telescope ---------------------------

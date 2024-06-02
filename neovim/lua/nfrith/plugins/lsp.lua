@@ -15,6 +15,7 @@ return {
         'htmx-lsp',
         'gopls',
         'tailwindcss-language-server',
+        'css-lsp',
       },
     },
     -- opts = function()
@@ -173,6 +174,7 @@ return {
           filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
         },
         csharp_ls = {},
+        -- cssls = {},
         gopls = {
           settings = {
             gopls = {
