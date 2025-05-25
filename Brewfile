@@ -5,28 +5,31 @@ brew "zellij"
 brew "fzf"
 brew "ripgrep"
 brew "fd"
-brew "bat"
-brew "eza"  # Modern replacement for ls
-brew "tree"
 brew "curl"
-brew "wget"
 
 # Development tools
 brew "gh"  # GitHub CLI
 brew "jq"  # JSON processor
-brew "yq"  # YAML processor
+brew "lazygit"  # TUI for git operations
 
 # Terminal and shell enhancements
 brew "starship"  # Cross-shell prompt
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
+brew "yazi"  # File manager
+brew "zoxide"  # Smart directory jumping
+
+# Image processing
+brew "imagemagick"
+
+# Web development
+brew "php"
 
 # Applications
 cask "wezterm"
-cask "devpod"
-
-# Optional but useful
-brew "htop"
-brew "bottom"  # Modern htop alternative
-brew "tldr"    # Simplified man pages
-brew "diff-so-fancy"  # Better git diffs
+cask "ghostty"
+cask "aerospace"  # Window tiling manager
+cask "bitwarden"  # Password manager
+cask "discord"  # Communication
+cask "font-symbols-only-nerd-font"  # Icon font
+cask "ngrok"  # Tunneling tool
+cask "obs"  # Streaming software
+cask "powershell"  # Microsoft shell

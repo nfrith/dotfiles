@@ -77,6 +77,18 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
             [[ -f "$DOTFILES_DIR/config/host/git/.gitconfig" ]] && \
                 safe_link "$DOTFILES_DIR/config/host/git/.gitconfig" "$HOME/.gitconfig"
             
+            # Ghostty terminal config
+            if [[ -f "$DOTFILES_DIR/config/host/ghostty/config" ]]; then
+                mkdir -p "$HOME/.config/ghostty"
+                safe_link "$DOTFILES_DIR/config/host/ghostty/config" "$HOME/.config/ghostty/config"
+            fi
+            
+            # Lazygit
+            if [[ -f "$DOTFILES_DIR/config/host/lazygit/config.yml" ]]; then
+                mkdir -p "$HOME/.config/lazygit"
+                safe_link "$DOTFILES_DIR/config/host/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+            fi
+            
             # Host shell configs
             [[ -f "$DOTFILES_DIR/config/host/shell/.zshrc" ]] && \
                 safe_link "$DOTFILES_DIR/config/host/shell/.zshrc" "$HOME/.zshrc"
@@ -96,6 +108,12 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
             if [[ -f "$DOTFILES_DIR/config/remote/neovim/init.lua" ]]; then
                 mkdir -p "$HOME/.config/nvim"
                 safe_link "$DOTFILES_DIR/config/remote/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+            fi
+            
+            # Lazygit
+            if [[ -f "$DOTFILES_DIR/config/remote/lazygit/config.yml" ]]; then
+                mkdir -p "$HOME/.config/lazygit"
+                safe_link "$DOTFILES_DIR/config/remote/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
             fi
             
             # Remote shell configs

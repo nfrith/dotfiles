@@ -1,0 +1,142 @@
+# Lazygit configuration for host environment (macOS)
+# Using XDG_CONFIG_HOME to standardize config location
+
+gui:
+  # Use Nerd Fonts for icons (assuming host has proper fonts)
+  nerdFontsVersion: "3"
+  showFileIcons: true
+  
+  # macOS-optimized UI settings
+  sidePanelWidth: 0.25
+  expandFocusedSidePanel: true
+  mainPanelSplitMode: flexible
+  enlargedSideViewLocation: left
+  
+  # Theming optimized for modern terminals
+  theme:
+    activeBorderColor:
+      - cyan
+      - bold
+    selectedLineBgColor:
+      - blue
+    unstagedChangesColor:
+      - red
+    
+  # Show useful information
+  showListFooter: true
+  showFileTree: true
+  showCommandLog: true
+  showBottomLine: true
+  showRandomTip: true
+  
+  # Mouse support for macOS
+  mouseEvents: true
+  
+  # Skip common warnings for experienced users
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  
+  # Default screen mode - start in full screen
+  screenMode: full
+  
+  # Status panel view - use dashboard (default) to start in Files view
+  statusPanelView: dashboard
+
+git:
+  # Auto-fetch and refresh for active development
+  autoFetch: true
+  autoRefresh: true
+  autoForwardBranches: onlyMainBranches
+  fetchAll: true
+  
+  # Commit settings
+  commit:
+    signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+  
+  # Merging
+  merging:
+    manualCommit: false
+    args: ""
+  
+  # Main branches (common patterns)
+  mainBranches:
+    - master
+    - main
+    - develop
+    - dev
+  
+  # Simple paging (delta not installed)
+  paging:
+    colorArg: always
+    pager: ""
+    useConfig: false
+
+# macOS-specific OS integration
+os:
+  # Use Vim as default editor
+  editPreset: "vim"
+  
+  # macOS open command
+  open: "open {{filename}}"
+  openLink: "open {{link}}"
+  
+  # Use pbcopy/pbpaste for clipboard (macOS native)
+  copyToClipboardCmd: "pbcopy"
+  readFromClipboardCmd: "pbpaste"
+
+# Update settings
+update:
+  method: background
+  days: 7
+
+# Don't show startup popups for experienced users
+disableStartupPopups: false
+
+# Confirm before quitting (safety net)
+confirmOnQuit: false
+
+# Enhanced keybindings for productivity
+keybinding:
+  universal:
+    # Keep standard vim-like navigation
+    prevItem-alt: k
+    nextItem-alt: j
+    prevBlock-alt: h
+    nextBlock-alt: l
+    
+    # Quick access
+    refresh: <c-r>
+    filteringMenu: <c-f>
+    diffingMenu: <c-d>
+    
+    # Clipboard
+    copyToClipboard: <c-c>
+    
+  files:
+    # Quick commit workflows
+    commitChanges: c
+    commitChangesWithEditor: C
+    amendLastCommit: A
+    stashAllChanges: s
+    
+    # File operations
+    ignoreFile: i
+    toggleStagedAll: a
+    
+  branches:
+    # Branch operations
+    checkoutBranchByName: c
+    rebaseBranch: r
+    mergeIntoCurrentBranch: M
+    createPullRequest: o
+    
+  commits:
+    # Interactive rebase shortcuts
+    squashDown: s
+    renameCommit: r
+    moveDownCommit: <c-j>
+    moveUpCommit: <c-k>
+    cherryPickCopy: C
+    pasteCommits: V

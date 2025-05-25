@@ -72,6 +72,9 @@ export DEVPOD_ENVIRONMENT=true
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# XDG Config Home for consistent config paths (especially for lazygit)
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Auto-completion
 autoload -Uz compinit
 compinit

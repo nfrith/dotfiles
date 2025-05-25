@@ -81,5 +81,8 @@ export LESS='-R'
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# XDG Config Home for consistent config paths (especially for lazygit)
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Host-specific customizations
 export DEVELOPMENT_HOST=true
