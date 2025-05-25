@@ -1,0 +1,33 @@
+# Host-specific Git configuration
+
+[include]
+    path = ~/.gitconfig-shared
+
+[user]
+    name = nfrith
+    email = your-email@example.com
+
+[credential]
+    helper = osxkeychain
+
+# Host-specific aliases for workflow management
+[alias]
+    # DevPod workflow helpers  
+    sync = "!f() { git pull --rebase && git push; }; f"
+    deploy = "!f() { git add . && git commit -m \"Deploy: $(date)\" && git push; }; f"
+    
+    # macOS-specific
+    opendiff = difftool -t opendiff
+    
+    # Shortcuts for common host operations
+    backup = "!f() { git add . && git commit -m \"Backup: $(date)\"; }; f"
+
+[difftool "opendiff"]
+    cmd = /usr/bin/opendiff \"$LOCAL\" \"$REMOTE\" -merge \"$MERGED\"
+
+[core]
+    # Use VS Code as editor when available
+    editor = code --wait
+
+[push]
+    autoSetupRemote = true

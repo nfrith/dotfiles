@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# DevPod connection helper script
+
+set -e
+
+DOTFILES_REPO="https://github.com/nfrith/dotfiles"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+usage() {
+    echo "Usage: devpod-connect [OPTIONS] <workspace-name-or-repo>"
+    echo ""
+    echo "Connect to or create a DevPod workspace with dotfiles."
+    echo ""
+    echo "Options:"
+    echo "  -i, --ide <ide>        IDE to use (vscode, goland, etc.)"
+    echo "  -r, --reset           Reset the workspace"
+    echo "  -h, --help            Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  devpod-connect my-project"
+    echo "  devpod-connect github.com/user/repo"
+    echo "  devpod-connect my-project --ide vscode --reset"
+}
+
+# Default values
+IDE="vscode"
+RESET_FLAG=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -i|--ide)
+            IDE="$2"
+            shift 2
+            ;;
+        -r|--reset)
+            RESET_FLAG="--reset"
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            WORKSPACE="$1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$WORKSPACE" ]]; then
+    echo -e "${RED}Error: Workspace name or repository is required${NC}"
+    usage
+    exit 1
+fi
+
+# Check if devpod is installed
+if ! command -v devpod >/dev/null 2>&1; then
+    echo -e "${RED}Error: DevPod is not installed${NC}"
+    echo "Install it with: brew install devpod"
+    exit 1
+fi
+
+echo -e "${BLUE}🚀 Connecting to DevPod workspace: ${WORKSPACE}${NC}"
+echo -e "${YELLOW}IDE: ${IDE}${NC}"
+echo -e "${YELLOW}Dotfiles: ${DOTFILES_REPO}${NC}"
+
+# Build the command
+cmd="devpod up \"$WORKSPACE\" --ide \"$IDE\" --dotfiles \"$DOTFILES_REPO\""
+
+if [[ -n "$RESET_FLAG" ]]; then
+    cmd="$cmd $RESET_FLAG"
+    echo -e "${YELLOW}⚠️  Resetting workspace${NC}"
+fi
+
+echo -e "${BLUE}Running: $cmd${NC}"
+eval "$cmd"
+
+echo -e "${GREEN}✅ Connected to workspace: ${WORKSPACE}${NC}"

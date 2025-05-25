@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Setup remote development session script
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}🚀 Setting up remote development session...${NC}"
+
+# Create common development directories
+echo -e "${YELLOW}📁 Creating development directories...${NC}"
+mkdir -p ~/workspace ~/projects ~/.local/bin
+
+# Set up environment
+echo -e "${YELLOW}🔧 Setting up environment...${NC}"
+
+# Source shell configuration
+if [[ -f ~/.zshrc ]]; then
+    source ~/.zshrc
+elif [[ -f ~/.bashrc ]]; then
+    source ~/.bashrc
+fi
+
+# Start zellij if available and not already running
+if command -v zellij >/dev/null 2>&1 && [[ -z "$ZELLIJ" ]]; then
+    echo -e "${YELLOW}🗂️  Starting zellij session...${NC}"
+    
+    # Check if there are existing sessions
+    if zellij list-sessions 2>/dev/null | grep -q "dev"; then
+        echo -e "${BLUE}Attaching to existing 'dev' session...${NC}"
+        exec zellij attach dev
+    else
+        echo -e "${BLUE}Creating new 'dev' session...${NC}"
+        exec zellij -s dev
+    fi
+else
+    echo -e "${GREEN}✅ Remote development session ready!${NC}"
+    
+    if [[ -n "$ZELLIJ" ]]; then
+        echo -e "${GREEN}Already running in zellij session${NC}"
+    elif ! command -v zellij >/dev/null 2>&1; then
+        echo -e "${YELLOW}Zellij not available, using regular shell${NC}"
+    fi
+fi
+
+# Display useful information
+echo -e "${BLUE}📋 Remote Development Environment Info:${NC}"
+echo -e "  ${GREEN}Home:${NC} $HOME"
+echo -e "  ${GREEN}Workspace:${NC} ~/workspace"
+echo -e "  ${GREEN}Projects:${NC} ~/projects"
+echo -e "  ${GREEN}Local bin:${NC} ~/.local/bin"
+
+if command -v nvim >/dev/null 2>&1; then
+    echo -e "  ${GREEN}Editor:${NC} nvim (Neovim)"
+else
+    echo -e "  ${YELLOW}Editor:${NC} vim (fallback)"
+fi
+
+if command -v git >/dev/null 2>&1; then
+    echo -e "  ${GREEN}Git:${NC} Available"
+    git --version
+fi
+
+echo -e "${GREEN}🎉 Happy coding!${NC}"

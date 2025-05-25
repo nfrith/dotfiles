@@ -1,0 +1,19 @@
+# Temporary Files
+*.swp
+*~
+
+# Build artifacts 
+build/
+dist/
+out/
+
+# Logs
+*.log
+
+# System-specific or machine-specific configuration
+.DS_Store  # macOS Finder metadata
+network.conf 
+
+# Editor/IDE project files
+.idea/
+.vscode/

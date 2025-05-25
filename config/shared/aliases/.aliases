@@ -1,0 +1,66 @@
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# List files
+alias l='eza -la --git'
+alias ll='eza -l --git'
+alias la='eza -la --git'
+alias lt='eza -la --tree --level=2 --git'
+alias lta='eza -la --tree --git'
+
+# Git aliases
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gc='git commit'
+alias gco='git checkout'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gl='git log --oneline --graph'
+alias gp='git push'
+alias gpl='git pull'
+alias gs='git status'
+alias gst='git stash'
+
+# Better defaults
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias cat='bat'
+alias find='fd'
+
+# Shortcuts
+alias v='nvim'
+alias vim='nvim'
+alias c='clear'
+alias h='history'
+alias j='jobs'
+
+# Safety aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# System info
+alias ports='netstat -tulanp'
+alias path='echo -e ${PATH//:/\\n}'
+
+# Development
+alias server='python3 -m http.server'
+alias myip='curl http://ipecho.net/plain; echo'
+
+# Docker shortcuts (for when available)
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps'
+alias di='docker images'
+
+# Zellij shortcuts (for remote environments)
+alias zj='zellij'
+alias zja='zellij attach'
+alias zjl='zellij list-sessions'
