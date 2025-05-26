@@ -6,6 +6,7 @@
 dotfiles/
 ├── README.md                    # User documentation
 ├── CLAUDE.md                   # This file - Claude setup guide
+├── bootstrap.sh               # Zero-dependency installer for fresh macOS
 ├── Brewfile                    # macOS package definitions
 ├── install.sh                 # Main entry point (DevPod auto-detects)
 ├── install-host.sh            # Host machine setup
@@ -70,12 +71,36 @@ This dotfiles setup enables the following development workflow:
 
 ## Setup Instructions
 
-### Scenario A: Host Machine Setup
+### Scenario A: Fresh macOS Setup (Recommended)
 
-**Purpose**: Configure your local macOS machine as the development host.
+**Purpose**: Set up a fresh macOS machine with zero manual dependencies.
 
 **Prerequisites:**
 - macOS 10.15+
+- Internet connection
+- Admin privileges
+
+**Installation (One Command):**
+```bash
+curl -fsSL https://raw.githubusercontent.com/nfrith/dotfiles/main/bootstrap.sh | bash
+```
+
+**What the bootstrap does:**
+1. **Automatically installs Xcode Command Line Tools** via Homebrew
+2. **Installs Homebrew** and adds it to PATH
+3. **Installs Git** via Homebrew
+4. **Clones dotfiles repository** to ~/.dotfiles
+5. **Runs host installation** automatically
+
+**Time savings:** Eliminates manual Xcode CLT installation and git setup steps.
+
+### Scenario B: Host Machine Setup (Manual)
+
+**Purpose**: Configure your local macOS machine when you already have git installed.
+
+**Prerequisites:**
+- macOS 10.15+
+- Git already installed
 - Admin privileges for Homebrew installation
 
 **Installation:**
@@ -105,7 +130,7 @@ cd ~/.dotfiles
    ```
 3. Test DevPod: `devpod provider add docker`
 
-### Scenario B: Remote Machine Setup
+### Scenario C: Remote Machine Setup
 
 **Purpose**: Configure a remote environment (DevPod workspace, SSH server, container).
 
@@ -224,9 +249,45 @@ zjl       # List sessions
 
 ## Troubleshooting
 
+### Bootstrap Issues
+
+**Homebrew installation fails:**
+```bash
+# Check macOS version compatibility
+sw_vers
+
+# Try manual Homebrew installation
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Then run manual host setup
+git clone https://github.com/nfrith/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles && ./install-host.sh
+```
+
+**Network connectivity problems:**
+```bash
+# Test internet connection
+curl -I https://github.com
+
+# Try with different DNS
+sudo dscacheutil -flushcache
+
+# Use manual installation as fallback
+```
+
+**Xcode CLT installation hangs:**
+```bash
+# Cancel and try manual installation
+xcode-select --install
+
+# Then run bootstrap again - it will skip completed steps
+curl -fsSL https://raw.githubusercontent.com/nfrith/dotfiles/main/bootstrap.sh | bash
+```
+
 ### Permission Issues
 ```bash
 chmod +x ~/.dotfiles/install.sh
+chmod +x ~/.dotfiles/bootstrap.sh
 chmod +x ~/.dotfiles/scripts/*.sh
 chmod +x ~/.dotfiles/bin/*
 ```

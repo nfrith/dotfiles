@@ -4,12 +4,18 @@ Personal dotfiles repository supporting both host machine and remote development
 
 ## Quick Start
 
+### Fresh macOS (Zero Dependencies)
+```bash
+curl -fsSL https://raw.githubusercontent.com/nfrith/dotfiles/main/bootstrap.sh | bash
+```
+*One command to install everything from scratch - no manual setup required!*
+
 ### For DevPod (Automatic)
 ```bash
 devpod up <workspace> --dotfiles https://github.com/nfrith/dotfiles
 ```
 
-### For Host Machine
+### For Host Machine (Manual)
 ```bash
 git clone https://github.com/nfrith/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
@@ -27,7 +33,8 @@ cd ~/.dotfiles
 
 ```
 dotfiles/
-├── install.sh                    # Main entry point (DevPod auto-detects)
+├── bootstrap.sh                 # Zero-dependency installer for fresh macOS
+├── install.sh                   # Main entry point (DevPod auto-detects)
 ├── install-host.sh              # Host machine installation  
 ├── install-remote.sh            # Remote/DevPod installation
 ├── Brewfile                     # macOS package management
@@ -181,7 +188,13 @@ dev-env-status  # Comprehensive environment health check
 
 ## Requirements
 
-### Host (macOS)
+### Fresh macOS (Bootstrap)
+- macOS 10.15+
+- Internet connection
+- Admin access (for Homebrew/Xcode CLT installation)
+- *No other dependencies - bootstrap handles everything!*
+
+### Host (macOS Manual)
 - macOS 10.15+
 - Git (for cloning)
 - Admin access (for Homebrew)
