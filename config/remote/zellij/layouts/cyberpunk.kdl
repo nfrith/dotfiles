@@ -13,8 +13,8 @@ layout {
         pane name="primary_shell" focus=true
     }
     
-    // Code editing tab - Full-width Yazi file explorer
-    tab name="◉ CODE_MATRIX" {
+    // Yazi file explorer tab
+    tab name="◉ YAZI" {
         pane name="yazi_explorer" {
             command "yazi"
         }
