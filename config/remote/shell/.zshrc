@@ -1,5 +1,9 @@
 # Remote/DevPod zsh configuration
 
+# Locale configuration - fix fzf perl warnings
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # History configuration
 HISTSIZE=10000
 SAVEHIST=10000
