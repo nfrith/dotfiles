@@ -60,6 +60,12 @@ if [[ -d "$DOTFILES_DIR/config/shared" ]]; then
         mkdir -p "$HOME/.config/yazi"
         safe_link "$DOTFILES_DIR/config/shared/yazi/yazi.toml" "$HOME/.config/yazi/yazi.toml"
     fi
+    
+    # Neovim configuration (shared across all environments)
+    if [[ -f "$DOTFILES_DIR/config/shared/nvim/init.lua" ]]; then
+        mkdir -p "$HOME/.config/nvim"
+        safe_link "$DOTFILES_DIR/config/shared/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+    fi
 fi
 
 # Link environment-specific configurations
