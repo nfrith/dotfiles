@@ -49,9 +49,6 @@ keybinds {
         
         // Session management
         bind "Alt d" { Detach; }
-        bind "Alt s" { LaunchOrFocusPlugin "session-manager" {
-            floating true
-        }; }
         
         // Search
         bind "Alt /" { SearchToggle; }
