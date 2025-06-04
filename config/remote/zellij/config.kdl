@@ -42,10 +42,10 @@ themes {
         white "#e0e0e0"       // Off-white
         
         // Enhanced tab styling for better visibility
-        tab_active_fg "#000000"      // Black text for contrast
-        tab_active_bg "#00ff9f"      // Bright matrix green background
-        tab_inactive_fg "#00ff9f"    // Matrix green text
-        tab_inactive_bg "#0a0a0f"    // Dark background
+        tab_active_fg "#0a0a0f"      // Dark text for contrast
+        tab_active_bg "#00ffff"      // Bright cyan background for active tab
+        tab_inactive_fg "#666666"    // Dimmed gray text for inactive tabs
+        tab_inactive_bg "#1a1a1f"    // Slightly lighter dark background
         
         // Pane border styling
         pane_active_border_fg "#00ff9f"    // Active pane green border
