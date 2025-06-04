@@ -54,6 +54,12 @@ if [[ -d "$DOTFILES_DIR/config/shared" ]]; then
     
     [[ -f "$DOTFILES_DIR/config/shared/aliases/.functions" ]] && \
         safe_link "$DOTFILES_DIR/config/shared/aliases/.functions" "$HOME/.functions"
+    
+    # Yazi configuration
+    if [[ -f "$DOTFILES_DIR/config/shared/yazi/yazi.toml" ]]; then
+        mkdir -p "$HOME/.config/yazi"
+        safe_link "$DOTFILES_DIR/config/shared/yazi/yazi.toml" "$HOME/.config/yazi/yazi.toml"
+    fi
 fi
 
 # Link environment-specific configurations

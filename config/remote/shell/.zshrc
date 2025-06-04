@@ -21,8 +21,13 @@ setopt COMPLETE_ALIASES
 [[ -f ~/.functions ]] && source ~/.functions
 [[ -f ~/.profile ]] && source ~/.profile
 
-# Simple prompt for remote environments
-PROMPT='%F{cyan}%n@%m%f:%F{blue}%~%f%# '
+# Starship prompt
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+else
+    # Fallback prompt for remote environments
+    PROMPT='%F{cyan}%n@%m%f:%F{blue}%~%f%# '
+fi
 
 # FZF setup (if available)
 if [[ -f ~/.fzf.zsh ]]; then

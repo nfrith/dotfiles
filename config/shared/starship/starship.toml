@@ -23,28 +23,22 @@ error_symbol = '[➜](bold red) '
 disabled = true
 
 [directory]
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 5
 style = "bold cyan"
 
 [git_branch]
-symbol = "🌱 "
+symbol = "⎇ "
 style = "bold yellow"
 
 [git_status]
 style = "bold red"
 
+[python]
+disabled = true
+
 [nodejs]
 symbol = "⬢ "
 style = "bold green"
-
-[python]
-symbol = "🐍 "
-style = "bold blue"
-
-[rust]
-symbol = "🦀 "
-style = "bold red"
 
 [docker_context]
 symbol = "🐳 "

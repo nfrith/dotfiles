@@ -1,10 +1,5 @@
 # Host zsh configuration
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # History configuration
 HISTSIZE=10000
 SAVEHIST=10000
@@ -81,8 +76,30 @@ export LESS='-R'
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Host-specific environment variables (customize per host)
+# Replace these placeholders with your actual API keys
+export GEMINI_API_KEY="your-gemini-api-key-here"
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+export ANTHROPIC_API_KEY="your-anthropic-api-key-here"
+
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# PHP paths
+export PATH="/opt/homebrew/opt/php@8.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.1/sbin:$PATH"
+
+# .NET tools
+export PATH="$PATH:$HOME/.dotnet/tools"
+
 # XDG Config Home for consistent config paths (especially for lazygit)
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# DevPod dotfiles configuration
+export DEVPOD_DOTFILES_URL="https://github.com/nfrith/dotfiles"
+export DEVPOD_DOTFILES_SCRIPT="install.sh"
 
 # Host-specific customizations
 export DEVELOPMENT_HOST=true
