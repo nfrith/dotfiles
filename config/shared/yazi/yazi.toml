@@ -1,6 +1,6 @@
 # CYBERPUNK YAZI CONFIG - Ghost in the Shell file explorer
 
-[manager]
+[mgr]
 # Valid sort_by options: "none", "mtime", "btime", "extension", "alphabetical", "natural", "size", "random"
 sort_by = "mtime"  # Changed from invalid "modified" to "mtime" (modification time)
 sort_sensitive = false
