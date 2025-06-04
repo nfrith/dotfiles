@@ -20,23 +20,18 @@ layout {
         }
     }
     
-    // System monitoring tab
-    tab name="◉ SYS_MONITOR" {
-        pane split_direction="vertical" {
-            // Top system monitor
-            pane size="50%" name="system_top" {
-                command "htop"
+    // Git operations tab
+    tab name="◉ GIT_CONTROL" {
+        pane split_direction="horizontal" {
+            // Git status pane
+            pane size="60%" name="git_main" {
+                command "git"
+                args "status"
             }
-            // Bottom split for processes and network
-            pane split_direction="horizontal" {
-                pane name="processes" {
-                    command "ps"
-                    args "aux"
-                }
-                pane name="network" {
-                    command "netstat"
-                    args "-tuln"
-                }
+            // Git log pane
+            pane name="git_log" {
+                command "git"
+                args "log" "--oneline" "--graph" "-10"
             }
         }
     }
@@ -65,18 +60,23 @@ layout {
         }
     }
     
-    // Git operations tab
-    tab name="◉ GIT_CONTROL" {
-        pane split_direction="horizontal" {
-            // Git status pane
-            pane size="60%" name="git_main" {
-                command "git"
-                args "status"
+    // System monitoring tab
+    tab name="◉ SYS_MONITOR" {
+        pane split_direction="vertical" {
+            // Top system monitor
+            pane size="50%" name="system_top" {
+                command "htop"
             }
-            // Git log pane
-            pane name="git_log" {
-                command "git"
-                args "log" "--oneline" "--graph" "-10"
+            // Bottom split for processes and network
+            pane split_direction="horizontal" {
+                pane name="processes" {
+                    command "ps"
+                    args "aux"
+                }
+                pane name="network" {
+                    command "netstat"
+                    args "-tuln"
+                }
             }
         }
     }
