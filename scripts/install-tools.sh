@@ -32,6 +32,9 @@ if is_linux; then
         # Install fzf
         if ! command -v fzf >/dev/null 2>&1; then
             echo "📥 Installing fzf..."
+            if [ -d ~/.fzf ]; then
+                rm -rf ~/.fzf
+            fi
             git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
             ~/.fzf/install --all
         fi
