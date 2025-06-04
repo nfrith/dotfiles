@@ -75,6 +75,38 @@ if is_linux; then
             curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
         fi
         
+        # Install yazi file manager with optional dependencies
+        if ! command -v yazi >/dev/null 2>&1; then
+            echo "📥 Installing Yazi file manager and dependencies..."
+            
+            # Install Yazi optional dependencies via apt
+            sudo apt-get install -y \
+                ffmpeg \
+                p7zip-full \
+                jq \
+                poppler-utils \
+                imagemagick \
+                file
+            
+            # Install Yazi binary (latest release for ARM64)
+            YAZI_VERSION="v0.2.5"
+            echo "📥 Downloading Yazi ${YAZI_VERSION} for ARM64..."
+            curl -LO "https://github.com/sxyazi/yazi/releases/download/${YAZI_VERSION}/yazi-aarch64-unknown-linux-gnu.tar.gz"
+            tar xzf "yazi-aarch64-unknown-linux-gnu.tar.gz"
+            sudo mv "yazi-aarch64-unknown-linux-gnu/yazi" /usr/local/bin/
+            sudo mv "yazi-aarch64-unknown-linux-gnu/ya" /usr/local/bin/
+            sudo chmod +x /usr/local/bin/yazi /usr/local/bin/ya
+            rm -rf "yazi-aarch64-unknown-linux-gnu"*
+            echo "✅ Yazi installed successfully"
+        fi
+        
+        # Install zoxide for yazi historical directory navigation
+        if ! command -v zoxide >/dev/null 2>&1; then
+            echo "📥 Installing zoxide..."
+            curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+            sudo mv ~/.local/bin/zoxide /usr/local/bin/ 2>/dev/null || true
+        fi
+        
     elif command -v yum >/dev/null 2>&1; then
         sudo yum update -y
         sudo yum install -y curl wget git gcc make unzip tree htop
