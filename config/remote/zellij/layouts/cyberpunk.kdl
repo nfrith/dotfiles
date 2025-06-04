@@ -1,7 +1,5 @@
 // CYBERPUNK LAYOUT - Ghost in the Shell dev environment
 layout {
-    cwd "/workspace"
-    
     default_tab_template {
         // Status bar at top with cyberpunk styling
         pane size=1 borderless=true {
@@ -11,6 +9,16 @@ layout {
         // Bottom status with system info
         pane size=2 borderless=true {
             plugin location="zellij:status-bar"
+        }
+        // Floating panes for quick access
+        floating_panes {
+            pane {
+                name "quick_terminal"
+                x "10%"
+                y "10%"
+                width "80%"
+                height "80%"
+            }
         }
     }
     
@@ -66,17 +74,6 @@ layout {
                 command "git"
                 args "log" "--oneline" "--graph" "-10"
             }
-        }
-    }
-    
-    // Floating panes for quick access
-    floating_panes {
-        pane {
-            name "quick_terminal"
-            x "10%"
-            y "10%"
-            width "80%"
-            height "80%"
         }
     }
 }
