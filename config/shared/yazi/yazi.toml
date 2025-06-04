@@ -1,11 +1,48 @@
+# CYBERPUNK YAZI CONFIG - Ghost in the Shell file explorer
+
 [manager]
-sort_by = "modified"
+# Valid sort_by options: "none", "mtime", "btime", "extension", "alphabetical", "natural", "size", "random"
+sort_by = "mtime"  # Changed from invalid "modified" to "mtime" (modification time)
 sort_sensitive = false
 sort_reverse = true
 sort_dir_first = true
-show_hidden = false
+show_hidden = true  # Show hidden files for full system access
 show_symlink = true
+linemode = "size"  # Show file sizes
 
 [preview]
+tab_size = 4
 max_width = 1000
 max_height = 1000
+cache_dir = ""
+
+[opener]
+# Open text files with neovim in the adjacent pane
+edit = [
+    { run = 'nvim "$@"', desc = "Edit with neovim", block = true, for = "unix" },
+]
+
+# View files with bat for syntax highlighting
+view = [
+    { run = 'bat --paging=always --theme=ansi "$@"', desc = "View with bat", block = true },
+    { run = 'less "$@"', desc = "View with less", block = true },
+]
+
+[open]
+# File type associations for cyberpunk workflow
+rules = [
+    { name = "*/", use = [ "edit", "open", "reveal" ] },
+    { mime = "text/*", use = [ "edit", "view" ] },
+    { mime = "image/*", use = [ "view" ] },
+    { mime = "video/*", use = [ "play" ] },
+    { mime = "audio/*", use = [ "play" ] },
+    { mime = "application/json", use = [ "edit", "view" ] },
+    { mime = "*/javascript", use = [ "edit", "view" ] },
+    { mime = "*/typescript", use = [ "edit", "view" ] },
+]
+
+[input]
+cursor_blink = true
+
+[log]
+enabled = false
