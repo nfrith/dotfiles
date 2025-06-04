@@ -1,9 +1,46 @@
-// Minimal working Zellij configuration
+// CYBERPUNK ZELLIJ CONFIG - Ghost in the Shell vibes
 default_shell "zsh"
-simplified_ui true
-pane_frames false
+default_layout "cyberpunk"
+theme "cyberpunk"
+simplified_ui false
+pane_frames true
 mouse_mode true
-scroll_buffer_size 10000
+copy_on_select false
+scroll_buffer_size 50000
+stacked_resize true
+
+// UI Configuration - Cyberpunk aesthetics
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+
+// Environment variables for cyberpunk feel
+env {
+    EDITOR "nvim"
+    TERM "xterm-256color"
+    CYBERPUNK_MODE "1"
+    COLORTERM "truecolor"
+}
+
+// CYBERPUNK THEME DEFINITION
+themes {
+    cyberpunk {
+        bg "#0a0a0f"          // Deep space black
+        fg "#00ff9f"          // Matrix green
+        red "#ff003c"         // Neon red (alerts)
+        green "#00ff9f"       // Neon green (success)
+        blue "#0099ff"        // Electric blue
+        yellow "#ffff00"      // Warning yellow
+        magenta "#ff0099"     // Hot pink (highlight)
+        orange "#ff6600"      // Neon orange
+        cyan "#00ffff"        // Cyan glow
+        black "#0a0a0f"       // True black
+        white "#e0e0e0"       // Off-white
+    }
+}
 
 keybinds {
     normal {
@@ -47,7 +84,9 @@ keybinds {
     }
 }
 
+// PLUGIN CONFIGURATION - Enhanced cyberpunk UI
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
+    compact-bar { path "compact-bar"; }
 }
