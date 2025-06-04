@@ -1,15 +1,11 @@
 // CYBERPUNK LAYOUT - Ghost in the Shell dev environment
 layout {
     default_tab_template {
-        // Status bar at top with cyberpunk styling
+        // Clean cyberpunk tab bar only
         pane size=1 borderless=true {
             plugin location="zellij:compact-bar"
         }
         children
-        // Bottom status with system info
-        pane size=2 borderless=true {
-            plugin location="zellij:status-bar"
-        }
     }
     
     // Main workspace tab
