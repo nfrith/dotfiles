@@ -13,15 +13,10 @@ layout {
         pane name="primary_shell" focus=true
     }
     
-    // Code editing tab
+    // Code editing tab - Full-width Yazi file explorer
     tab name="◉ CODE_MATRIX" {
-        pane split_direction="vertical" {
-            // Yazi file explorer - cyberpunk file navigation
-            pane size="35%" name="yazi_explorer" {
-                command "yazi"
-            }
-            // Editor/command space - opens when you select files in yazi
-            pane name="editor_space"
+        pane name="yazi_explorer" {
+            command "yazi"
         }
     }
     
