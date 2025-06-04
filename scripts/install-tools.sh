@@ -88,14 +88,14 @@ if is_linux; then
                 imagemagick \
                 file
             
-            # Install Yazi binary (latest release for ARM64)
-            echo "📥 Downloading Yazi latest release for ARM64..."
-            curl -LO "https://github.com/sxyazi/yazi/releases/latest/download/yazi-aarch64-unknown-linux-gnu.zip"
-            unzip "yazi-aarch64-unknown-linux-gnu.zip"
-            sudo mv "yazi-aarch64-unknown-linux-gnu/yazi" /usr/local/bin/
-            sudo mv "yazi-aarch64-unknown-linux-gnu/ya" /usr/local/bin/
+            # Install Yazi binary (latest release for ARM64 - musl for compatibility)
+            echo "📥 Downloading Yazi latest release for ARM64 (musl)..."
+            curl -LO "https://github.com/sxyazi/yazi/releases/latest/download/yazi-aarch64-unknown-linux-musl.zip"
+            unzip "yazi-aarch64-unknown-linux-musl.zip"
+            sudo mv "yazi-aarch64-unknown-linux-musl/yazi" /usr/local/bin/
+            sudo mv "yazi-aarch64-unknown-linux-musl/ya" /usr/local/bin/
             sudo chmod +x /usr/local/bin/yazi /usr/local/bin/ya
-            rm -rf "yazi-aarch64-unknown-linux-gnu"*
+            rm -rf "yazi-aarch64-unknown-linux-musl"*
             echo "✅ Yazi installed successfully"
         fi
         
