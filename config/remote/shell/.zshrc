@@ -21,8 +21,13 @@ bindkey "^?" backward-delete-char  # Backspace (DEL)
 bindkey "^[[3~" delete-char        # Delete key
 
 # Ensure proper terminal settings for containers
-export TERM="${TERM:-xterm-256color}"
-stty erase ^?  # Set backspace character
+# Force a compatible TERM for containers
+if [[ "$TERM" == "xterm-ghostty" || -z "$TERM" ]]; then
+    export TERM="xterm-256color"
+fi
+
+# Set backspace character (escape the special character)
+stty erase '^?'
 
 # Load shared configurations
 [[ -f ~/.gitconfig-shared ]] && git config --global include.path ~/.gitconfig-shared
