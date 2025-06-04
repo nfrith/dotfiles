@@ -37,12 +37,10 @@ style = "bold red"
 disabled = true
 
 [nodejs]
-symbol = "⬢ "
-style = "bold green"
+disabled = true
 
 [docker_context]
-symbol = "🐳 "
-style = "bold blue"
+disabled = true
 
 # Show username only when in SSH session
 [username]
