@@ -1,9 +1,9 @@
 // Zellij configuration for remote development
 
-// Behavior
+// Basic settings
+default_shell "zsh"
 simplified_ui true
 pane_frames false
-default_shell "zsh"
 
 // Mouse support
 mouse_mode true
@@ -82,48 +82,9 @@ keybinds {
     }
 }
 
-// Plugins
+// Basic plugins
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
-    strider { path "strider"; }
     compact-bar { path "compact-bar"; }
-    session-manager { path "session-manager"; }
-}
-
-// Layout for development
-layout {
-    default_tab_template {
-        pane size=1 borderless=true {
-            plugin location="tab-bar"
-        }
-        children
-        pane size=2 borderless=true {
-            plugin location="status-bar"
-        }
-    }
-    
-    tab name="dev" focus=true {
-        pane split_direction="vertical" {
-            pane size="70%" {
-                command "nvim"
-                args "."
-            }
-            pane split_direction="horizontal" {
-                pane size="50%"
-                pane size="50%" {
-                    command "git"
-                    args "status"
-                }
-            }
-        }
-    }
-    
-    tab name="server" {
-        pane
-    }
-    
-    tab name="logs" {
-        pane
-    }
 }
