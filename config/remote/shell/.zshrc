@@ -44,8 +44,9 @@ fi
 
 # Zellij integration
 if command -v zellij >/dev/null 2>&1; then
-    # Auto-start zellij if not already in a session and not in SSH
-    if [[ -z "$ZELLIJ" && -z "$SSH_CONNECTION" ]]; then
+    # Auto-start zellij only on initial login (not when manually typing zsh)
+    # Check multiple conditions: not in zellij, not in SSH, and this is a login shell
+    if [[ -z "$ZELLIJ" && -z "$ZELLIJ_SESSION_NAME" && -z "$SSH_CONNECTION" && "$0" == "-zsh" ]]; then
         exec zellij
     fi
     
