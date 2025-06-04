@@ -84,10 +84,6 @@ keybinds {
         // Session management
         bind "Alt d" { Detach; }
         
-        // Floating terminal popup
-        bind "Alt /" { ToggleFloatingPanes; }
-        bind "Alt f" { NewPane; TogglePaneFrames; }
-        
         // Copy mode
         bind "Alt [" { SwitchToMode "scroll"; }
     }
