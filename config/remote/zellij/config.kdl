@@ -1,8 +1,5 @@
 // Zellij configuration for remote development
 
-// Theme
-theme "catppuccin-mocha"
-
 // Behavior
 simplified_ui true
 pane_frames false

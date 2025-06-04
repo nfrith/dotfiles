@@ -25,9 +25,8 @@ if is_linux; then
         # Install neovim
         if ! command -v nvim >/dev/null 2>&1; then
             echo "📥 Installing Neovim..."
-            curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-            chmod u+x nvim.appimage
-            sudo mv nvim.appimage /usr/local/bin/nvim
+            # Use package manager for easier ARM64 compatibility
+            sudo apt-get install -y neovim
         fi
         
         # Install fzf
