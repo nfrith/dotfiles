@@ -41,6 +41,30 @@ layout {
         }
     }
     
+    // Dev servers tab - 4 panes for running multiple servers
+    tab name="◉ DEV_SERVERS" {
+        pane split_direction="vertical" {
+            // Top row - main servers
+            pane split_direction="horizontal" {
+                pane name="server_1" {
+                    // Primary dev server (e.g., pnpm dev, npm start)
+                }
+                pane name="server_2" {
+                    // Secondary server (e.g., API server, backend)
+                }
+            }
+            // Bottom row - additional services
+            pane split_direction="horizontal" {
+                pane name="server_3" {
+                    // Third server (e.g., database, docker compose)
+                }
+                pane name="server_4" {
+                    // Fourth server (e.g., testing server, workers)
+                }
+            }
+        }
+    }
+    
     // Git operations tab
     tab name="◉ GIT_CONTROL" {
         pane split_direction="horizontal" {
