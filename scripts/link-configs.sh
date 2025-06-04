@@ -66,6 +66,12 @@ if [[ -d "$DOTFILES_DIR/config/shared" ]]; then
         mkdir -p "$HOME/.config/nvim"
         safe_link "$DOTFILES_DIR/config/shared/nvim/init.lua" "$HOME/.config/nvim/init.lua"
     fi
+    
+    # Starship configuration (shared across all environments)
+    if [[ -f "$DOTFILES_DIR/config/shared/starship/starship.toml" ]]; then
+        mkdir -p "$HOME/.config"
+        safe_link "$DOTFILES_DIR/config/shared/starship/starship.toml" "$HOME/.config/starship.toml"
+    fi
 fi
 
 # Link environment-specific configurations
@@ -79,11 +85,6 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 safe_link "$DOTFILES_DIR/config/host/wezterm.lua" "$HOME/.wezterm.lua"
             fi
             
-            # Starship (goes in ~/.config/)
-            if [[ -f "$DOTFILES_DIR/config/shared/starship/starship.toml" ]]; then
-                mkdir -p "$HOME/.config"
-                safe_link "$DOTFILES_DIR/config/shared/starship/starship.toml" "$HOME/.config/starship.toml"
-            fi
             
             # Host git config
             [[ -f "$DOTFILES_DIR/config/host/git/.gitconfig" ]] && \
