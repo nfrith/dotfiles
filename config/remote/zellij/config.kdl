@@ -1,19 +1,10 @@
-// Zellij configuration for remote development
-
-// Basic settings
+// Minimal working Zellij configuration
 default_shell "zsh"
 simplified_ui true
 pane_frames false
-
-// Mouse support
 mouse_mode true
 scroll_buffer_size 10000
 
-// Session configuration
-session_serialization false
-serialize_pane_viewport false
-
-// Keybindings - optimized for development workflow
 keybinds {
     normal {
         // Pane management
@@ -29,11 +20,6 @@ keybinds {
         // Close pane
         bind "Alt q" { CloseFocus; }
         
-        // Resize panes
-        bind "Alt +" { Resize "Increase"; }
-        bind "Alt _" { Resize "Decrease"; }
-        bind "Alt =" { Resize "Increase"; }
-        
         // Tab management
         bind "Alt t" { NewTab; }
         bind "Alt w" { CloseTab; }
@@ -42,16 +28,9 @@ keybinds {
         bind "Alt 3" { GoToTab 3; }
         bind "Alt 4" { GoToTab 4; }
         bind "Alt 5" { GoToTab 5; }
-        bind "Alt 6" { GoToTab 6; }
-        bind "Alt 7" { GoToTab 7; }
-        bind "Alt 8" { GoToTab 8; }
-        bind "Alt 9" { GoToTab 9; }
         
         // Session management
         bind "Alt d" { Detach; }
-        
-        // Search
-        bind "Alt /" { SearchToggle; }
         
         // Copy mode
         bind "Alt [" { SwitchToMode "scroll"; }
@@ -63,25 +42,12 @@ keybinds {
         bind "k" "Up" { ScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        bind "/" { SwitchToMode "entersearch"; }
-        bind "n" { Search "down"; }
-        bind "N" { Search "up"; }
         bind "G" { ScrollToBottom; }
         bind "g" { ScrollToTop; }
     }
-    
-    search {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "j" "Down" { SearchDown; }
-        bind "k" "Up" { SearchUp; }
-        bind "n" { SearchDown; }
-        bind "N" { SearchUp; }
-    }
 }
 
-// Basic plugins
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
-    compact-bar { path "compact-bar"; }
 }
