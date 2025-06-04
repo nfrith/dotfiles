@@ -69,6 +69,12 @@ if is_linux; then
             rm -rf "fd-v${FD_VERSION}-x86_64-unknown-linux-musl"*
         fi
         
+        # Install starship
+        if ! command -v starship >/dev/null 2>&1; then
+            echo "📥 Installing starship..."
+            curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
+        fi
+        
     elif command -v yum >/dev/null 2>&1; then
         sudo yum update -y
         sudo yum install -y curl wget git gcc make unzip tree htop
