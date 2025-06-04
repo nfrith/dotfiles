@@ -40,6 +40,20 @@ themes {
         cyan "#00ffff"        // Cyan glow
         black "#0a0a0f"       // True black
         white "#e0e0e0"       // Off-white
+        
+        // Enhanced tab styling for better visibility
+        tab_active_fg "#000000"      // Black text for contrast
+        tab_active_bg "#00ff9f"      // Bright matrix green background
+        tab_inactive_fg "#00ff9f"    // Matrix green text
+        tab_inactive_bg "#0a0a0f"    // Dark background
+        
+        // Pane border styling
+        pane_active_border_fg "#00ff9f"    // Active pane green border
+        pane_inactive_border_fg "#333333"  // Inactive pane dim border
+        
+        // Status line colors
+        status_line_bg "#0a0a0f"      // Status background
+        status_line_fg "#00ff9f"      // Status text
     }
 }
 
