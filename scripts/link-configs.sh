@@ -122,11 +122,6 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 safe_link "$DOTFILES_DIR/config/remote/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"
             fi
             
-            # Neovim
-            if [[ -f "$DOTFILES_DIR/config/remote/neovim/init.lua" ]]; then
-                mkdir -p "$HOME/.config/nvim"
-                safe_link "$DOTFILES_DIR/config/remote/neovim/init.lua" "$HOME/.config/nvim/init.lua"
-            fi
             
             # Lazygit
             if [[ -f "$DOTFILES_DIR/config/remote/lazygit/config.yml" ]]; then
