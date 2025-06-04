@@ -15,6 +15,11 @@ setopt AUTO_CD
 setopt CORRECT
 setopt COMPLETE_ALIASES
 
+# Fix backspace/delete key bindings for DevPod/Docker environments
+bindkey "^H" backward-delete-char  # Backspace (Ctrl+H)
+bindkey "^?" backward-delete-char  # Backspace (DEL)
+bindkey "^[[3~" delete-char        # Delete key
+
 # Load shared configurations
 [[ -f ~/.gitconfig-shared ]] && git config --global include.path ~/.gitconfig-shared
 [[ -f ~/.aliases ]] && source ~/.aliases
