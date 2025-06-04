@@ -123,6 +123,12 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 safe_link "$DOTFILES_DIR/config/remote/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"
             fi
             
+            # Zellij layouts directory
+            if [[ -d "$DOTFILES_DIR/config/remote/zellij/layouts" ]]; then
+                mkdir -p "$HOME/.config/zellij"
+                safe_link "$DOTFILES_DIR/config/remote/zellij/layouts" "$HOME/.config/zellij/layouts"
+            fi
+            
             
             # Lazygit
             if [[ -f "$DOTFILES_DIR/config/remote/lazygit/config.yml" ]]; then
