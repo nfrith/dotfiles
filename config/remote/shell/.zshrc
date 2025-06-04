@@ -20,6 +20,10 @@ bindkey "^H" backward-delete-char  # Backspace (Ctrl+H)
 bindkey "^?" backward-delete-char  # Backspace (DEL)
 bindkey "^[[3~" delete-char        # Delete key
 
+# Ensure proper terminal settings for containers
+export TERM="${TERM:-xterm-256color}"
+stty erase ^?  # Set backspace character
+
 # Load shared configurations
 [[ -f ~/.gitconfig-shared ]] && git config --global include.path ~/.gitconfig-shared
 [[ -f ~/.aliases ]] && source ~/.aliases
