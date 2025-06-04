@@ -14,8 +14,9 @@ if is_linux; then
         
         # Fix locale issues
         sudo apt-get install -y locales
+        echo 'en_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
         sudo locale-gen en_US.UTF-8
-        sudo update-locale LANG=en_US.UTF-8
+        sudo update-locale LANG=en_US.UTF-8 || true  # Don't fail if locale update has issues
         
         # Essential packages
         sudo apt-get install -y \
