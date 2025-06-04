@@ -97,9 +97,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 # XDG Config Home for consistent config paths (especially for lazygit)
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# DevPod dotfiles configuration
-export DEVPOD_DOTFILES_URL="https://github.com/nfrith/dotfiles"
-export DEVPOD_DOTFILES_SCRIPT="install.sh"
-
 # Host-specific customizations
 export DEVELOPMENT_HOST=true

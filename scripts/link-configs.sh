@@ -95,6 +95,12 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 safe_link "$DOTFILES_DIR/config/host/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
             fi
             
+            # DevPod configuration
+            if [[ -f "$DOTFILES_DIR/config/host/devpod/config.yaml" ]]; then
+                mkdir -p "$HOME/.devpod"
+                safe_link "$DOTFILES_DIR/config/host/devpod/config.yaml" "$HOME/.devpod/config.yaml"
+            fi
+            
             # Host shell configs
             [[ -f "$DOTFILES_DIR/config/host/shell/.zshrc" ]] && \
                 safe_link "$DOTFILES_DIR/config/host/shell/.zshrc" "$HOME/.zshrc"
