@@ -16,12 +16,11 @@ layout {
     // Code editing tab
     tab name="◉ CODE_MATRIX" {
         pane split_direction="vertical" {
-            // File explorer pane
-            pane size="25%" name="file_nav" {
-                command "ls"
-                args "-la" "--color=always"
+            // Yazi file explorer - cyberpunk file navigation
+            pane size="35%" name="yazi_explorer" {
+                command "yazi"
             }
-            // Main editor area
+            // Editor/command space - opens when you select files in yazi
             pane name="editor_space"
         }
     }
