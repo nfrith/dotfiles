@@ -156,7 +156,8 @@ devpod up <workspace> --dotfiles https://github.com/nfrith/dotfiles
 ```
 
 **What this installs:**
-- **Development tools** (neovim, git, fzf, ripgrep, bat, fd)
+- **Development tools** (neovim, git, fzf, ripgrep, bat, fd, yazi, zoxide)
+- **Node.js** and **Claude Code** for AI-assisted development
 - **Zellij** terminal multiplexer for session management
 - **Zsh** configuration optimized for remote development
 - **Git** configuration for development workflow
@@ -166,6 +167,7 @@ devpod up <workspace> --dotfiles https://github.com/nfrith/dotfiles
 1. Run `setup-remote-session` to initialize your development environment
 2. Start zellij: `zellij` or use the auto-start in zsh config
 3. Configure git user details if needed
+4. Use `claude-code` for AI-assisted development in your terminal
 
 ## Key Scripts and Usage
 
@@ -233,6 +235,9 @@ dev-env-status
 
 # Update dotfiles across environments  
 sync-dotfiles
+
+# AI-assisted development with Claude Code
+claude-code    # Start Claude Code CLI
 
 # Quick git operations (aliases available)
 gs        # git status

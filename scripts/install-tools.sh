@@ -112,6 +112,26 @@ if is_linux; then
             sudo mv ~/.local/bin/zoxide /usr/local/bin/ 2>/dev/null || true
         fi
         
+        # Install Node.js via nvm (required for Claude Code)
+        if ! command -v node >/dev/null 2>&1; then
+            echo "📥 Installing Node.js via nvm..."
+            # Install nvm
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+            # Source nvm to use it immediately
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # Install latest LTS Node.js
+            nvm install --lts
+            nvm use --lts
+            nvm alias default node
+        fi
+        
+        # Install Claude Code
+        if ! command -v claude-code >/dev/null 2>&1; then
+            echo "📥 Installing Claude Code..."
+            npm install -g @anthropic-ai/claude-code
+        fi
+        
     elif command -v yum >/dev/null 2>&1; then
         sudo yum update -y
         sudo yum install -y curl wget git gcc make unzip tree htop
