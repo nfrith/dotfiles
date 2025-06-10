@@ -114,16 +114,30 @@ if is_linux; then
         
         # Install Node.js via nvm (required for Claude Code)
         if ! command -v node >/dev/null 2>&1; then
-            echo "📥 Installing Node.js via nvm..."
-            # Install nvm
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-            # Source nvm to use it immediately
+            echo "📥 Setting up Node.js..."
+            
+            # Check if nvm is already installed
             export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            # Install latest LTS Node.js
-            nvm install --lts
-            nvm use --lts
-            nvm alias default node
+            if [ -s "$NVM_DIR/nvm.sh" ]; then
+                echo "✅ nvm already installed, sourcing and setting up Node.js..."
+                \. "$NVM_DIR/nvm.sh"
+            elif command -v nvm >/dev/null 2>&1; then
+                echo "✅ nvm already available in PATH..."
+            else
+                echo "📥 Installing nvm..."
+                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            fi
+            
+            # Install/use latest LTS Node.js if not already available
+            if ! command -v node >/dev/null 2>&1; then
+                echo "📥 Installing Node.js LTS..."
+                nvm install --lts
+                nvm use --lts
+                nvm alias default node
+            else
+                echo "✅ Node.js already available"
+            fi
         fi
         
         # Install Claude Code
