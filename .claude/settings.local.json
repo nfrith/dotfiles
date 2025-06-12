@@ -1,8 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "mcp__firecrawl-mcp__firecrawl_scrape",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
-  }
+  },
+  "enableAllProjectMcpServers": false
 }

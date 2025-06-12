@@ -32,4 +32,5 @@ cask "discord"  # Communication
 cask "font-symbols-only-nerd-font"  # Icon font
 cask "ngrok"  # Tunneling tool
 cask "obs"  # Streaming software
+cask "orbstack"  # Docker & Linux VM
 cask "powershell"  # Microsoft shell

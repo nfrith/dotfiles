@@ -65,7 +65,14 @@ if command -v zellij >/dev/null 2>&1; then
     # Auto-start zellij on initial DevPod connection
     # Only start if: not already in zellij, not nested shell (SHLVL=1), and not in tmux
     if [[ -z "$ZELLIJ" && -z "$ZELLIJ_SESSION_NAME" && "$SHLVL" -eq 1 && -z "$TMUX" ]]; then
-        exec zellij
+        # Check if there are existing sessions
+        if zellij list-sessions 2>/dev/null | grep -q .; then
+            # Attach to the first available session
+            exec zellij attach
+        else
+            # Start a new session
+            exec zellij
+        fi
     fi
     
     # Zellij aliases
