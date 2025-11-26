@@ -27,12 +27,23 @@ case "$ENVIRONMENT" in
         
     "remote")
         echo "🔧 Configuring remote environment..."
-        
+
         # Create common development directories
         mkdir -p "$HOME/workspace" "$HOME/projects" "$HOME/.local/bin"
-        
+
         # Set up shell for remote development
         echo "🐚 Configuring shell for remote development..."
+
+        # Set zsh as default shell if available and not already set
+        if command -v zsh >/dev/null 2>&1 && [[ "$SHELL" != *"zsh"* ]]; then
+            echo "🐚 Setting zsh as default shell..."
+            ZSH_PATH=$(which zsh)
+            # Add zsh to /etc/shells if not present
+            if ! grep -q "$ZSH_PATH" /etc/shells 2>/dev/null; then
+                echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+            fi
+            sudo chsh -s "$ZSH_PATH" "$(whoami)" 2>/dev/null || chsh -s "$ZSH_PATH" 2>/dev/null || true
+        fi
         
         # Add useful environment variables for remote development
         cat >> "$HOME/.profile" << 'EOF'

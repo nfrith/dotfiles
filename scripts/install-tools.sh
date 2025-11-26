@@ -26,7 +26,8 @@ if is_linux; then
             build-essential \
             unzip \
             tree \
-            htop
+            htop \
+            zsh
             
         # Install neovim
         if ! command -v nvim >/dev/null 2>&1; then
