@@ -33,6 +33,7 @@ cd ~/.dotfiles
 
 ```
 dotfiles/
+├── .devcontainer/               # DevContainer for developing dotfiles
 ├── bootstrap.sh                 # Zero-dependency installer for fresh macOS
 ├── install.sh                   # Main entry point (DevPod auto-detects)
 ├── install-host.sh              # Host machine installation  
@@ -203,6 +204,10 @@ dev-env-status  # Comprehensive environment health check
 - Git
 - Curl/wget
 - Sudo access (for package installation)
+
+## Contributing
+
+See [CLAUDE.md](CLAUDE.md) for detailed development workflow and instructions.
 
 ## License
 

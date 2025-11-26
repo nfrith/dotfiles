@@ -95,7 +95,18 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 mkdir -p "$HOME/.config/ghostty"
                 safe_link "$DOTFILES_DIR/config/host/ghostty/config" "$HOME/.config/ghostty/config"
             fi
-            
+
+            # Karabiner keyboard customization
+            if [[ -f "$DOTFILES_DIR/config/host/karabiner/karabiner.json" ]]; then
+                mkdir -p "$HOME/.config/karabiner"
+                safe_link "$DOTFILES_DIR/config/host/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+            fi
+
+            # Aerospace tiling window manager
+            if [[ -f "$DOTFILES_DIR/config/host/aerospace/.aerospace.toml" ]]; then
+                safe_link "$DOTFILES_DIR/config/host/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
+            fi
+
             # Lazygit
             if [[ -f "$DOTFILES_DIR/config/host/lazygit/config.yml" ]]; then
                 mkdir -p "$HOME/.config/lazygit"

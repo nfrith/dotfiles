@@ -4,6 +4,8 @@
 
 ```
 dotfiles/
+├── .devcontainer/
+│   └── devcontainer.json      # DevContainer for developing dotfiles themselves
 ├── README.md                    # User documentation
 ├── CLAUDE.md                   # This file - Claude setup guide
 ├── bootstrap.sh               # Zero-dependency installer for fresh macOS
@@ -216,6 +218,34 @@ The system automatically detects your environment:
 - **Re-apply**: Run `./scripts/link-configs.sh [host|remote]`
 
 ## Workflow Commands
+
+### Developing This Dotfiles Repository
+
+**Recursive development workflow:**
+This repository includes a `.devcontainer` that allows you to develop the dotfiles using the same environment they create. This is perfect for testing changes before deploying them to company projects.
+
+```bash
+# Develop the dotfiles themselves using DevPod
+cd ~/.dotfiles
+devpod up . --ide none
+
+# This creates a development environment with:
+# - The same remote tools (zellij, neovim, ripgrep, etc.)
+# - The same configurations you use in company projects
+# - Live testing environment for dotfiles changes
+```
+
+**Testing workflow:**
+```bash
+# 1. Make changes to dotfiles in your host environment
+# 2. Push changes to git
+# 3. Delete and recreate DevPod workspace to test:
+devpod delete .
+devpod up . --ide none
+
+# 4. Test your changes in the live environment
+# 5. Once satisfied, your company projects will use the updated dotfiles
+```
 
 ### Common Development Tasks
 

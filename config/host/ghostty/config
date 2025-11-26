@@ -41,18 +41,18 @@ keybind = shift+enter=text:\n
 
 
 # Theme - colorblind-friendly dark theme
-theme = catppuccin-mocha
+theme = "tokyonight"
 
 # Font configuration for better readability
 font-family = "JetBrains Mono"
-font-size = 14
+font-size = 13
 font-feature = +liga +calt
 
 # Window appearance - make it look badass
 window-padding-x = 20
 window-padding-y = 20
 window-decoration = true
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 background-opacity = 0.95
 background-blur-radius = 20
 
@@ -69,3 +69,34 @@ resize-overlay-duration = 2s
 # Disable Alt+j and Alt+k shorcuts because they disrupt aerospace's hotkeys
 keybind = alt+j=unbind
 keybind = alt+k=unbind
+
+# Unbind Hyper keys so Aerospace can use them for window focus
+keybind = super+ctrl+alt+shift+h=unbind
+keybind = super+ctrl+alt+shift+l=unbind
+
+# Unbind Ctrl+Alt combos so they pass through to Zellij
+keybind = ctrl+alt+h=unbind
+keybind = ctrl+alt+j=unbind
+keybind = ctrl+alt+k=unbind
+keybind = ctrl+alt+l=unbind
+keybind = ctrl+alt+1=unbind
+keybind = ctrl+alt+2=unbind
+keybind = ctrl+alt+3=unbind
+keybind = ctrl+alt+4=unbind
+keybind = ctrl+alt+5=unbind
+keybind = ctrl+alt+6=unbind
+keybind = ctrl+alt+7=unbind
+keybind = ctrl+alt+8=unbind
+keybind = ctrl+alt+9=unbind
+keybind = ctrl+alt+t=unbind
+keybind = ctrl+alt+n=unbind
+keybind = ctrl+alt+x=unbind
+keybind = ctrl+alt+w=unbind
+keybind = ctrl+alt+f=unbind
+keybind = ctrl+alt+s=unbind
+keybind = ctrl+alt+left_bracket=unbind
+keybind = ctrl+alt+right_bracket=unbind
+keybind = ctrl+alt+left=unbind
+keybind = ctrl+alt+down=unbind
+keybind = ctrl+alt+up=unbind
+keybind = ctrl+alt+right=unbind
