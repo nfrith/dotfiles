@@ -29,11 +29,13 @@ if is_linux; then
             htop \
             zsh
             
-        # Install neovim
+        # Install neovim (latest from GitHub, not outdated apt package)
         if ! command -v nvim >/dev/null 2>&1; then
-            echo "📥 Installing Neovim..."
-            # Use package manager for easier ARM64 compatibility
-            sudo apt-get install -y neovim
+            echo "📥 Installing Neovim (latest)..."
+            curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+            sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+            sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+            rm -f nvim-linux-x86_64.tar.gz
         fi
         
         # Install fzf
