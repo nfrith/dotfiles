@@ -159,7 +159,17 @@ if is_linux; then
                 && sudo apt update \
                 && sudo apt install gh -y
         fi
-        
+
+        # Install lazygit
+        if ! command -v lazygit >/dev/null 2>&1; then
+            echo "📥 Installing lazygit..."
+            LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+            tar xf lazygit.tar.gz lazygit
+            sudo install lazygit /usr/local/bin
+            rm -f lazygit lazygit.tar.gz
+        fi
+
     elif command -v yum >/dev/null 2>&1; then
         sudo yum update -y
         sudo yum install -y curl wget git gcc make unzip tree htop
