@@ -1,0 +1,83 @@
+// CYBERPUNK LAYOUT - Ghost in the Shell dev environment
+layout {
+    default_tab_template {
+        // Clean cyberpunk tab bar only
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+        children
+    }
+    
+    // Main workspace tab
+    tab name="◉ MAIN_TERMINAL" focus=true {
+        pane name="primary_shell" focus=true
+    }
+    
+    // Yazi file explorer tab
+    tab name="◉ YAZI" {
+        pane name="yazi_explorer" {
+            command "yazi"
+        }
+    }
+    
+    // Git operations tab
+    tab name="◉ GIT_CONTROL" {
+        pane split_direction="horizontal" {
+            // Git status pane
+            pane size="60%" name="git_main" {
+                command "git"
+                args "status"
+            }
+            // Git log pane
+            pane name="git_log" {
+                command "git"
+                args "log" "--oneline" "--graph" "-10"
+            }
+        }
+    }
+    
+    // Dev servers tab - 4 panes for running multiple servers
+    tab name="◉ DEV_SERVERS" {
+        pane split_direction="vertical" {
+            // Top row - main servers
+            pane split_direction="horizontal" {
+                pane name="server_1" {
+                    // Primary dev server (e.g., pnpm dev, npm start)
+                }
+                pane name="server_2" {
+                    // Secondary server (e.g., API server, backend)
+                }
+            }
+            // Bottom row - additional services
+            pane split_direction="horizontal" {
+                pane name="server_3" {
+                    // Third server (e.g., database, docker compose)
+                }
+                pane name="server_4" {
+                    // Fourth server (e.g., testing server, workers)
+                }
+            }
+        }
+    }
+    
+    // System monitoring tab
+    tab name="◉ SYS_MONITOR" {
+        pane split_direction="vertical" {
+            // Top system monitor
+            pane size="50%" name="system_top" {
+                command "htop"
+            }
+            // Bottom split for processes and network
+            pane split_direction="horizontal" {
+                pane name="processes" {
+                    command "ps"
+                    args "aux"
+                }
+                pane name="network" {
+                    command "netstat"
+                    args "-tuln"
+                }
+            }
+        }
+    }
+}

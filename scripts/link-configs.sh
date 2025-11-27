@@ -119,10 +119,22 @@ if [[ "$ENVIRONMENT" != "shared" && -d "$DOTFILES_DIR/config/$ENVIRONMENT" ]]; t
                 safe_link "$DOTFILES_DIR/config/host/devpod/config.yaml" "$HOME/.devpod/config.yaml"
             fi
             
+            # Zellij
+            if [[ -f "$DOTFILES_DIR/config/host/zellij/config.kdl" ]]; then
+                mkdir -p "$HOME/.config/zellij"
+                safe_link "$DOTFILES_DIR/config/host/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"
+            fi
+
+            # Zellij layouts directory
+            if [[ -d "$DOTFILES_DIR/config/host/zellij/layouts" ]]; then
+                mkdir -p "$HOME/.config/zellij"
+                safe_link "$DOTFILES_DIR/config/host/zellij/layouts" "$HOME/.config/zellij/layouts"
+            fi
+
             # Host shell configs
             [[ -f "$DOTFILES_DIR/config/host/shell/.zshrc" ]] && \
                 safe_link "$DOTFILES_DIR/config/host/shell/.zshrc" "$HOME/.zshrc"
-            
+
             [[ -f "$DOTFILES_DIR/config/host/shell/.bashrc" ]] && \
                 safe_link "$DOTFILES_DIR/config/host/shell/.bashrc" "$HOME/.bashrc"
             ;;

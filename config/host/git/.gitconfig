@@ -1,7 +1,7 @@
 # Host-specific Git configuration
 
 [include]
-    path = ~/.gitconfig-shared
+	path = /Users/0xnfrith/.gitconfig-shared
 
 [user]
     name = nfrith
