@@ -79,11 +79,11 @@ fi
 
 # Run the installation script
 echo -e "${YELLOW}🔧 Running dotfiles installation...${NC}"
-if [[ -f "install.sh" ]]; then
-    chmod +x install.sh
-    ./install.sh
+if [[ -f "install-host.sh" ]]; then
+    chmod +x install-host.sh
+    ./install-host.sh
 else
-    echo -e "${RED}Error: install.sh not found in dotfiles repository${NC}"
+    echo -e "${RED}Error: install-host.sh not found in dotfiles repository${NC}"
     exit 1
 fi
 

@@ -24,7 +24,7 @@ check_command() {
     local cmd="$1"
     local description="$2"
     local optional="${3:-false}"
-    
+
     if command -v "$cmd" >/dev/null 2>&1; then
         local version=""
         case "$cmd" in
@@ -35,7 +35,6 @@ check_command() {
             "rg") version="$(rg --version | head -n1 | cut -d' ' -f2)" ;;
             "bat") version="$(bat --version | cut -d' ' -f2)" ;;
             "fd") version="$(fd --version | cut -d' ' -f2)" ;;
-            "devpod") version="$(devpod version 2>/dev/null | grep 'devpod version' | cut -d' ' -f3 || echo 'unknown')" ;;
             *) version="installed" ;;
         esac
         echo -e "${CHECK} ${description}: ${GREEN}${version}${NC}"
@@ -55,7 +54,7 @@ check_file() {
     local file="$1"
     local description="$2"
     local optional="${3:-false}"
-    
+
     if [[ -f "$file" ]]; then
         echo -e "${CHECK} ${description}: ${GREEN}exists${NC}"
         return 0
@@ -69,18 +68,8 @@ check_file() {
     fi
 }
 
-# Environment detection
-echo -e "\n${BLUE}Environment Detection:${NC}"
-if [[ -n "${DEVPOD}" || -n "${DEVPOD_WORKSPACE_ID}" ]]; then
-    echo -e "${CHECK} Environment: ${GREEN}DevPod${NC}"
-elif [[ -n "${CONTAINER}" || -f /.dockerenv ]]; then
-    echo -e "${CHECK} Environment: ${GREEN}Container${NC}"
-elif [[ -n "${SSH_CONNECTION}" ]]; then
-    echo -e "${CHECK} Environment: ${GREEN}SSH Remote${NC}"
-else
-    echo -e "${CHECK} Environment: ${GREEN}Host/Local${NC}"
-fi
-
+# Environment info
+echo -e "\n${BLUE}Environment:${NC}"
 echo -e "${CHECK} OS: ${GREEN}$(uname -s)${NC}"
 echo -e "${CHECK} Architecture: ${GREEN}$(uname -m)${NC}"
 echo -e "${CHECK} Shell: ${GREEN}${SHELL}${NC}"
@@ -102,19 +91,7 @@ check_command "eza" "Eza" true
 
 # Package managers
 echo -e "\n${BLUE}Package Managers:${NC}"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    check_command "brew" "Homebrew"
-else
-    check_command "apt-get" "APT" true
-    check_command "yum" "YUM" true
-    check_command "pacman" "Pacman" true
-fi
-
-# DevPod (for host environments)
-if [[ -z "${DEVPOD}" && -z "${CONTAINER}" ]]; then
-    echo -e "\n${BLUE}Development Platform:${NC}"
-    check_command "devpod" "DevPod" true
-fi
+check_command "brew" "Homebrew"
 
 # Configuration files
 echo -e "\n${BLUE}Configuration Files:${NC}"
@@ -129,9 +106,7 @@ if command -v zellij >/dev/null 2>&1; then
     check_file "$HOME/.config/zellij/config.kdl" "Zellij config" true
 fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    check_file "$HOME/.config/wezterm/wezterm.lua" "Wezterm config" true
-fi
+check_file "$HOME/.config/ghostty/config" "Ghostty config" true
 
 # PATH check
 echo -e "\n${BLUE}PATH Configuration:${NC}"
@@ -165,5 +140,4 @@ fi
 
 echo -e "\n${YELLOW}💡 Tips:${NC}"
 echo -e "  • Run 'sync-dotfiles' to update your dotfiles"
-echo -e "  • Use 'devpod-connect <workspace>' to connect to DevPod workspaces"
 echo -e "  • Type 'zellij' to start a terminal multiplexer session"
