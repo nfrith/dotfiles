@@ -127,6 +127,10 @@ Scripts can drift from repo. Updates require re-running installer. Symlinks woul
 
 ### Medium Priority
 
+- [ ] Review `config/shared/aliases/.aliases` for optimal developer/AI workflow
+  - Note to future self: "workflow" = the daily flow you move through (terminal, git, navigation, tools)
+  - Consider: which aliases enhance vs break AI tooling (e.g., `cat='bat'` breaks heredocs when bat missing)
+  - Consider: which aliases are actually used vs cruft
 - [ ] Consolidate Zellij installation to single location
 - [ ] Extract tool versions to central config file
 - [ ] Add `--dry-run` flag to install scripts
