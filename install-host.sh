@@ -23,7 +23,7 @@ fi
 
 # Link host configurations
 echo "🔗 Linking host configurations..."
-./scripts/link-configs.sh host
+./scripts/link-configs.sh
 
 # Add custom scripts to PATH
 echo "🛠️  Setting up custom scripts..."
