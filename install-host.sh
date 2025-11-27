@@ -7,13 +7,16 @@ cd "$DOTFILES_DIR"
 
 echo "💻 Setting up host environment..."
 
-# Source utilities
-source scripts/detect-environment.sh
-
 # macOS-specific setup
-if is_macos; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "🍺 Setting up Homebrew and packages..."
     ./scripts/brew-setup.sh
+
+    # Set zsh as default shell if not already
+    if [[ "$SHELL" != *"zsh"* ]]; then
+        echo "🐚 Setting zsh as default shell..."
+        chsh -s /bin/zsh
+    fi
 else
     echo "⚠️  Non-macOS host detected. Skipping Homebrew setup."
 fi
@@ -24,9 +27,7 @@ echo "🔗 Linking host configurations..."
 
 # Add custom scripts to PATH
 echo "🛠️  Setting up custom scripts..."
-if [[ -d "$HOME/.local/bin" ]]; then
-    mkdir -p "$HOME/.local/bin"
-fi
+mkdir -p "$HOME/.local/bin"
 
 # Copy custom scripts to local bin
 cp bin/* "$HOME/.local/bin/" 2>/dev/null || true
@@ -34,7 +35,7 @@ cp bin/* "$HOME/.local/bin/" 2>/dev/null || true
 # Add to PATH if not already there
 if ! echo "$PATH" | grep -q "$HOME/.local/bin"; then
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.zshrc"
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc" 2>/dev/null || true
 fi
 
 echo "✅ Host environment setup complete!"

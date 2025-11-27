@@ -131,6 +131,8 @@ Scripts can drift from repo. Updates require re-running installer. Symlinks woul
   - Note to future self: "workflow" = the daily flow you move through (terminal, git, navigation, tools)
   - Consider: which aliases enhance vs break AI tooling (e.g., `cat='bat'` breaks heredocs when bat missing)
   - Consider: which aliases are actually used vs cruft
+  - Consider: ask Opus in extended thinking mode to analyze and draft optimal solutions
+  - Consider: use mixed sampling prompt technology for diverse solution exploration
 - [ ] Consolidate Zellij installation to single location
 - [ ] Extract tool versions to central config file
 - [ ] Add `--dry-run` flag to install scripts
