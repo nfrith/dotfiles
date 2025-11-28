@@ -139,5 +139,5 @@ if [[ -n "${ZELLIJ}" ]]; then
 fi
 
 echo -e "\n${YELLOW}💡 Tips:${NC}"
-echo -e "  • Run 'sync-dotfiles' to update your dotfiles"
 echo -e "  • Type 'zellij' to start a terminal multiplexer session"
+echo -e "  • Run 'cd ~/.dotfiles && git pull && ./install-host.sh' to update"
