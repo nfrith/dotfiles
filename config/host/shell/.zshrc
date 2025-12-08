@@ -58,6 +58,11 @@ if command -v fzf >/dev/null 2>&1; then
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'
 fi
 
+# Zoxide setup
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
+
 # DevPod shortcuts
 if command -v devpod >/dev/null 2>&1; then
     alias dp='devpod'
@@ -77,10 +82,7 @@ export LESS='-R'
 export PATH="$HOME/.local/bin:$PATH"
 
 # Host-specific environment variables (customize per host)
-# Replace these placeholders with your actual API keys
-export GEMINI_API_KEY="your-gemini-api-key-here"
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
-export ANTHROPIC_API_KEY="your-anthropic-api-key-here"
 
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
