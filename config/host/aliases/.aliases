@@ -34,8 +34,9 @@ alias gst='git stash'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias cat='bat'
-alias find='fd'
+# Only alias cat/find in interactive shells (heredocs use cat, scripts use find)
+[[ -o interactive ]] && alias cat='bat'
+[[ -o interactive ]] && alias find='fd'
 
 # Shortcuts
 alias v='nvim'
