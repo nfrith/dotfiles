@@ -1,4 +1,6 @@
 # Navigation
+# Only alias cd to z in interactive shells (Claude Code runs non-interactive)
+[[ -o interactive ]] && alias cd='z'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -6,6 +8,7 @@ alias ~='cd ~'
 alias -- -='cd -'
 
 # List files
+alias ls='eza'
 alias l='eza -la --git'
 alias ll='eza -l --git'
 alias la='eza -la --git'
