@@ -5,6 +5,7 @@ brew "zellij"
 brew "fzf"
 brew "ripgrep"
 brew "fd"
+brew "bat"  # Better cat with syntax highlighting
 brew "curl"
 
 # Development tools
