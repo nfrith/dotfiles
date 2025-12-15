@@ -96,8 +96,18 @@ export PATH="/opt/homebrew/opt/php@8.1/sbin:$PATH"
 # .NET tools
 export PATH="$PATH:$HOME/.dotnet/tools"
 
+# Go
+export PATH="$HOME/go/bin:$PATH"
+
 # XDG Config Home for consistent config paths (especially for lazygit)
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Host-specific customizations
 export DEVELOPMENT_HOST=true
+# pnpm
+export PNPM_HOME="/Users/0xnfrith/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
