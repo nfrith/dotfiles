@@ -5,7 +5,7 @@
 
 [user]
     name = nfrith
-    email = nfrith001@gmail.com
+    email = nf@s9t.dev
 
 [credential]
     helper = osxkeychain
@@ -26,8 +26,7 @@
     cmd = /usr/bin/opendiff \"$LOCAL\" \"$REMOTE\" -merge \"$MERGED\"
 
 [core]
-    # Use VS Code as editor when available
-    editor = code --wait
+    editor = nvim
 
 [push]
     autoSetupRemote = true

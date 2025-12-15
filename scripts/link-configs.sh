@@ -106,4 +106,10 @@ if [[ -d "$DOTFILES_DIR/config/host/zellij/layouts" ]]; then
     safe_link "$DOTFILES_DIR/config/host/zellij/layouts" "$HOME/.config/zellij/layouts"
 fi
 
+# SSH configuration
+if [[ -f "$DOTFILES_DIR/config/host/ssh/config" ]]; then
+    mkdir -p "$HOME/.ssh"
+    safe_link "$DOTFILES_DIR/config/host/ssh/config" "$HOME/.ssh/config"
+fi
+
 echo "✅ Configuration linking complete!"

@@ -1,0 +1,40 @@
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# This won't be added again if you remove it.
+Include ~/.orbstack/ssh/config
+
+# DevPod Start recall.devpod
+Host recall.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/usr/local/bin/devpod" ssh --stdio --context default --user vscode recall
+  User vscode
+# DevPod End recall.devpod
+# DevPod Start punpon-farm.devpod
+Host punpon-farm.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/usr/local/bin/devpod" ssh --stdio --context default --user node punpon-farm
+  User node
+# DevPod End punpon-farm.devpod
+# DevPod Start deckfusion-3.devpod
+Host deckfusion-3.devpod
+  ForwardAgent yes
+  LogLevel error
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  HostKeyAlgorithms rsa-sha2-256,rsa-sha2-512,ssh-rsa
+  ProxyCommand "/usr/local/bin/devpod" ssh --stdio --context default --user node deckfusion-3 --workdir "/workspace/main"
+  User node
+# DevPod End deckfusion-3.devpod
+# GitHub
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
