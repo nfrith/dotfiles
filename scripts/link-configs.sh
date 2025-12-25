@@ -112,4 +112,14 @@ if [[ -f "$DOTFILES_DIR/config/host/ssh/config" ]]; then
     safe_link "$DOTFILES_DIR/config/host/ssh/config" "$HOME/.ssh/config"
 fi
 
+# Ghost (Claude Code context - must clone separately: gh repo clone section-9-technologies/ghost ~/HUB/repos/section-9/ghost)
+GHOST_DIR="$HOME/HUB/repos/section-9/ghost"
+if [[ -d "$GHOST_DIR" ]]; then
+    mkdir -p "$HOME/.claude"
+    safe_link "$GHOST_DIR/statusline.sh" "$HOME/.claude/statusline.sh"
+else
+    echo "⚠️  Ghost repo not found. Clone it for Claude Code statusline:"
+    echo "   gh repo clone section-9-technologies/ghost ~/HUB/repos/section-9/ghost"
+fi
+
 echo "✅ Configuration linking complete!"
