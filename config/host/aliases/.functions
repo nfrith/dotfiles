@@ -126,3 +126,23 @@ urlencode() {
 urldecode() {
     python3 -c "import urllib.parse; print(urllib.parse.unquote('$1'))"
 }
+
+# Claude Code with dynamic CLAUDE.md symlink management
+# Prevents duplication when working in ghost repo while providing
+# global context when working elsewhere
+unalias c 2>/dev/null  # Remove any existing alias
+c() {
+  local ghost_repo="$HOME/HUB/repos/section-9/ghost"
+  local symlink="$HOME/.claude/CLAUDE.md"
+  local target="$ghost_repo/CLAUDE.md"
+
+  if [[ "$PWD" == "$ghost_repo"* ]]; then
+    # In ghost - remove symlink to avoid duplication
+    [[ -L "$symlink" ]] && command rm "$symlink"
+  else
+    # Elsewhere - ensure symlink exists
+    [[ ! -e "$symlink" && -f "$target" ]] && ln -s "$target" "$symlink"
+  fi
+
+  claude "$@"
+}
