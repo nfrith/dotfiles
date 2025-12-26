@@ -129,7 +129,12 @@ urldecode() {
 
 # Claude Code with dynamic CLAUDE.md symlink management
 # Prevents duplication when working in ghost repo/worktrees while providing
-# global context when working elsewhere
+# appropriate context based on location:
+#
+# Modes:
+#   - Ghost/worktree:     No symlink (uses local CLAUDE.md)
+#   - Safe directories:   Full context (section-9/*, nfrith/*)
+#   - Customer repos:     Lockdown context (any other ~/HUB/repos/*)
 #
 # Supports:
 #   - Legacy ghost location: ~/HUB/repos/section-9/ghost
@@ -140,32 +145,52 @@ c() {
   local worktree_base="$HOME/worktrees"
   local symlink="$HOME/.claude/CLAUDE.md"
 
-  # Determine if we're in a ghost directory (legacy or worktree)
-  local in_ghost=false
-
-  if [[ "$PWD" == "$ghost_legacy"* ]]; then
-    # In legacy ghost location
-    in_ghost=true
-  elif [[ "$PWD" == "$worktree_base/ghost-"* ]]; then
-    # In a ghost worktree (e.g., ~/worktrees/ghost-main/apps/omote)
-    in_ghost=true
-  fi
-
-  if [[ "$in_ghost" == true ]]; then
-    # In ghost - remove global symlink to avoid duplication
-    # Claude Code will pick up the local CLAUDE.md automatically
-    [[ -L "$symlink" ]] && command rm "$symlink"
+  # Context files - prefer worktree, fall back to legacy
+  local full_context=""
+  local lockdown_context=""
+  if [[ -f "$worktree_base/ghost-main/CLAUDE.md" ]]; then
+    full_context="$worktree_base/ghost-main/CLAUDE.md"
+    lockdown_context="$worktree_base/ghost-main/.claude/templates/CLAUDE.lockdown.md"
   else
-    # Elsewhere - ensure symlink exists for global context
-    # Prefer worktree main, fall back to legacy
-    if [[ ! -e "$symlink" ]]; then
-      if [[ -f "$worktree_base/ghost-main/CLAUDE.md" ]]; then
-        ln -s "$worktree_base/ghost-main/CLAUDE.md" "$symlink"
-      elif [[ -f "$ghost_legacy/CLAUDE.md" ]]; then
-        ln -s "$ghost_legacy/CLAUDE.md" "$symlink"
-      fi
-    fi
+    full_context="$ghost_legacy/CLAUDE.md"
+    lockdown_context="$ghost_legacy/.claude/templates/CLAUDE.lockdown.md"
   fi
+
+  # Determine context mode based on current directory
+  local mode="lockdown"  # Default to lockdown for safety
+
+  if [[ "$PWD" == "$ghost_legacy"* ]] || [[ "$PWD" == "$worktree_base/ghost-"* ]]; then
+    # In ghost repo or worktree - no symlink needed
+    mode="ghost"
+  elif [[ "$PWD" == "$HOME/HUB/repos/section-9/"* ]] || \
+       [[ "$PWD" == "$HOME/HUB/repos/nfrith/"* ]]; then
+    # Safe directories - full context
+    mode="free"
+  elif [[ "$PWD" == "$HOME/HUB/repos/"* ]]; then
+    # Customer repositories - lockdown mode
+    mode="lockdown"
+  else
+    # Unknown location - default to full context
+    mode="free"
+  fi
+
+  # Apply the appropriate symlink configuration
+  case "$mode" in
+    ghost)
+      # Remove symlink - use local CLAUDE.md
+      [[ -L "$symlink" ]] && command rm "$symlink"
+      ;;
+    free)
+      # Full context symlink
+      [[ -L "$symlink" ]] && command rm "$symlink"
+      [[ -f "$full_context" ]] && ln -s "$full_context" "$symlink"
+      ;;
+    lockdown)
+      # Lockdown context symlink
+      [[ -L "$symlink" ]] && command rm "$symlink"
+      [[ -f "$lockdown_context" ]] && ln -s "$lockdown_context" "$symlink"
+      ;;
+  esac
 
   claude "$@"
 }
