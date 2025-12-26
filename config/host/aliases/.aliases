@@ -69,3 +69,9 @@ alias di='docker images'
 alias zj='zellij'
 alias zja='zellij attach'
 alias zjl='zellij list-sessions'
+
+# Ghost worktree shortcuts
+alias gwn='ghost-worktree-new'
+alias gwr='ghost-worktree-rm'
+alias gwl='ghost-worktree-list'
+alias gw='cd ~/worktrees && ls -la'

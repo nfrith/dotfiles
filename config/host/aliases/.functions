@@ -128,20 +128,43 @@ urldecode() {
 }
 
 # Claude Code with dynamic CLAUDE.md symlink management
-# Prevents duplication when working in ghost repo while providing
+# Prevents duplication when working in ghost repo/worktrees while providing
 # global context when working elsewhere
+#
+# Supports:
+#   - Legacy ghost location: ~/HUB/repos/section-9/ghost
+#   - Worktree locations:    ~/worktrees/ghost-*
 unalias c 2>/dev/null  # Remove any existing alias
 c() {
-  local ghost_repo="$HOME/HUB/repos/section-9/ghost"
+  local ghost_legacy="$HOME/HUB/repos/section-9/ghost"
+  local worktree_base="$HOME/worktrees"
   local symlink="$HOME/.claude/CLAUDE.md"
-  local target="$ghost_repo/CLAUDE.md"
 
-  if [[ "$PWD" == "$ghost_repo"* ]]; then
-    # In ghost - remove symlink to avoid duplication
+  # Determine if we're in a ghost directory (legacy or worktree)
+  local in_ghost=false
+
+  if [[ "$PWD" == "$ghost_legacy"* ]]; then
+    # In legacy ghost location
+    in_ghost=true
+  elif [[ "$PWD" == "$worktree_base/ghost-"* ]]; then
+    # In a ghost worktree (e.g., ~/worktrees/ghost-main/apps/omote)
+    in_ghost=true
+  fi
+
+  if [[ "$in_ghost" == true ]]; then
+    # In ghost - remove global symlink to avoid duplication
+    # Claude Code will pick up the local CLAUDE.md automatically
     [[ -L "$symlink" ]] && command rm "$symlink"
   else
-    # Elsewhere - ensure symlink exists
-    [[ ! -e "$symlink" && -f "$target" ]] && ln -s "$target" "$symlink"
+    # Elsewhere - ensure symlink exists for global context
+    # Prefer worktree main, fall back to legacy
+    if [[ ! -e "$symlink" ]]; then
+      if [[ -f "$worktree_base/ghost-main/CLAUDE.md" ]]; then
+        ln -s "$worktree_base/ghost-main/CLAUDE.md" "$symlink"
+      elif [[ -f "$ghost_legacy/CLAUDE.md" ]]; then
+        ln -s "$ghost_legacy/CLAUDE.md" "$symlink"
+      fi
+    fi
   fi
 
   claude "$@"

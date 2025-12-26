@@ -84,6 +84,9 @@ export LESS='-R'
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Ghost worktree scripts
+export PATH="$HOME/worktrees/ghost-main/scripts/worktree:$PATH"
+
 # Host-specific environment variables (customize per host)
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
