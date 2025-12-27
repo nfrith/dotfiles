@@ -138,7 +138,7 @@ urldecode() {
 #
 # Supports:
 #   - Legacy ghost location: ~/HUB/repos/section-9/ghost
-#   - Worktree locations:    ~/worktrees/ghost-*
+#   - Worktree locations:    ~/worktrees/* (excluding ghost.git)
 unalias c 2>/dev/null  # Remove any existing alias
 c() {
   local ghost_legacy="$HOME/HUB/repos/section-9/ghost"
@@ -148,9 +148,9 @@ c() {
   # Context files - prefer worktree, fall back to legacy
   local full_context=""
   local lockdown_context=""
-  if [[ -f "$worktree_base/ghost-main/CLAUDE.md" ]]; then
-    full_context="$worktree_base/ghost-main/CLAUDE.md"
-    lockdown_context="$worktree_base/ghost-main/.claude/templates/CLAUDE.lockdown.md"
+  if [[ -f "$worktree_base/main/CLAUDE.md" ]]; then
+    full_context="$worktree_base/main/CLAUDE.md"
+    lockdown_context="$worktree_base/main/.claude/templates/CLAUDE.lockdown.md"
   else
     full_context="$ghost_legacy/CLAUDE.md"
     lockdown_context="$ghost_legacy/.claude/templates/CLAUDE.lockdown.md"
@@ -159,7 +159,7 @@ c() {
   # Determine context mode based on current directory
   local mode="lockdown"  # Default to lockdown for safety
 
-  if [[ "$PWD" == "$ghost_legacy"* ]] || [[ "$PWD" == "$worktree_base/ghost-"* ]]; then
+  if [[ "$PWD" == "$ghost_legacy"* ]] || { [[ "$PWD" == "$worktree_base/"* ]] && [[ "$PWD" != "$worktree_base/ghost.git"* ]]; }; then
     # In ghost repo or worktree - no symlink needed
     mode="ghost"
   elif [[ "$PWD" == "$HOME/HUB/repos/section-9/"* ]] || \
