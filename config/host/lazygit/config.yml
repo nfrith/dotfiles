@@ -67,9 +67,9 @@ os:
   # macOS open command
   open: "open {{filename}}"
   openLink: "open {{link}}"
-  # Use pbcopy/pbpaste for clipboard (macOS native)
-  copyToClipboardCmd: "pbcopy"
-  readFromClipboardCmd: "pbpaste"
+  # Clipboard - using defaults (explicit pbcopy was breaking it)
+  # copyToClipboardCmd: "pbcopy"
+  # readFromClipboardCmd: "pbpaste"
 # Update settings
 update:
   method: background
@@ -78,40 +78,5 @@ update:
 disableStartupPopups: false
 # Confirm before quitting (safety net)
 confirmOnQuit: false
-# Enhanced keybindings for productivity
-keybinding:
-  universal:
-    # Keep standard vim-like navigation
-    prevItem-alt: k
-    nextItem-alt: j
-    prevBlock-alt: h
-    nextBlock-alt: l
-    # Quick access
-    refresh: <c-r>
-    filteringMenu: <c-f>
-    diffingMenu: <c-d>
-    # Clipboard
-    copyToClipboard: <c-c>
-  files:
-    # Quick commit workflows
-    commitChanges: c
-    commitChangesWithEditor: C
-    amendLastCommit: A
-    stashAllChanges: s
-    # File operations
-    ignoreFile: i
-    toggleStagedAll: a
-  branches:
-    # Branch operations
-    checkoutBranchByName: c
-    rebaseBranch: r
-    mergeIntoCurrentBranch: M
-    createPullRequest: o
-  commits:
-    # Interactive rebase shortcuts
-    squashDown: s
-    renameCommit: r
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
-    cherryPickCopy: C
-    pasteCommits: V
+# Keybindings: using lazygit defaults
+# Press ? in lazygit to see all keybindings
