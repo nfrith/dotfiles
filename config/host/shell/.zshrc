@@ -82,7 +82,8 @@ export PAGER=less
 export LESS='-R'
 
 # API keys via 1Password (cached for fast startup)
-export ANTHROPIC_API_KEY=$("${0:A:h}/op-cache.sh" anthropic-api-key "op://2501-workstation/zsh/anthropic-api-key")
+# TODO: Fix path during dotfiles merge - op-cache.sh needs to be in PATH or use proper dotfiles path variable
+export ANTHROPIC_API_KEY=$(op-cache.sh anthropic-api-key "op://2501-workstation/zsh/anthropic-api-key" 2>/dev/null || op read "op://2501-workstation/zsh/anthropic-api-key" 2>/dev/null)
 
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
