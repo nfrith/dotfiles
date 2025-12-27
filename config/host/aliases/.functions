@@ -194,3 +194,19 @@ c() {
 
   claude "$@"
 }
+
+# Auto-rename Zellij tab when entering a worktree
+autoload -U add-zsh-hook
+add-zsh-hook chpwd _worktree_tab_rename
+
+_worktree_tab_rename() {
+  [[ -z "${ZELLIJ:-}" ]] && return
+  [[ "$PWD" != "$HOME/worktrees/"* ]] && return
+  [[ "$PWD" == "$HOME/worktrees/ghost.git"* ]] && return
+
+  local env_file="$PWD/.env.worktree"
+  [[ -f "$env_file" ]] || return
+
+  local tab_name=$(grep '^WORKTREE_TAB_NAME=' "$env_file" 2>/dev/null | cut -d= -f2-)
+  [[ -n "$tab_name" ]] && zellij action rename-tab "$tab_name"
+}
