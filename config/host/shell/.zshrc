@@ -81,8 +81,8 @@ export VISUAL=nvim
 export PAGER=less
 export LESS='-R'
 
-# API keys via 1Password
-export ANTHROPIC_API_KEY=$(op read "op://2501-workstation/zsh/anthropic-api-key" 2>/dev/null)
+# API keys via 1Password (cached for fast startup)
+export ANTHROPIC_API_KEY=$("${0:A:h}/op-cache.sh" anthropic-api-key "op://2501-workstation/zsh/anthropic-api-key")
 
 # Add local bin to PATH
 export PATH="$HOME/.local/bin:$PATH"
